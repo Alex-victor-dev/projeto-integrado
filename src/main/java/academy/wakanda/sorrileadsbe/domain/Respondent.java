@@ -1,16 +1,25 @@
 package academy.wakanda.sorrileadsbe.domain;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+import java.util.UUID;
 
+
+
+@Getter
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Respondent {
-
+    @Id
+    private UUID idRespondent;
     @NotBlank
     private String name;
     @NotBlank
@@ -24,8 +33,10 @@ public class Respondent {
     private Status status;
     private LocalDateTime registrationTime;
 
+
     public Status Respondent(String name, String phone, String email, MultipleChoice multipleChoice, String text)
             throws InstantiationException, IllegalAccessException {
+        this.idRespondent = UUID.randomUUID();
         this.name = name;
         this.phone = phone;
         this.email = email;
