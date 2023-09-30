@@ -16,3 +16,6 @@ spring:
       properties:
         hibernate:
           default_schema: sorrileads
+server:
+  servlet:
+    context-path: /sorrileads/api
