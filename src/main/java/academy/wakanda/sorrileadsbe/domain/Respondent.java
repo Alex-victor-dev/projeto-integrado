@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Respondent {
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column(name= "id", updatable = false, unique = true, nullable = false)
     private UUID idRespondent;
     @NotBlank
     private String name;
@@ -34,7 +35,6 @@ public class Respondent {
 
     public Respondent(String name, String phone, String email, MultipleChoice multipleChoice, String text)
             throws InstantiationException, IllegalAccessException {
-        this.idRespondent = UUID.randomUUID();
         this.name = name;
         this.phone = phone;
         this.email = email;
