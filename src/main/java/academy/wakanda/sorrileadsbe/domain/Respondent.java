@@ -14,6 +14,7 @@ import java.util.UUID;
 
 @Getter
 @Entity
+@Table(name = "respondent")
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Respondent {
     @Id
