@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/respondent")
@@ -13,4 +14,7 @@ public interface RespondentApi {
     @ResponseStatus(code = HttpStatus.CREATED)
     RespondentResponse postRespondent (@Valid @RequestBody RespondentRequest respondentRequest);
 
+    @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    List<RespondentListResponse> getListRespondents ();
 }
