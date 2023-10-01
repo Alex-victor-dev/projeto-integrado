@@ -5,6 +5,7 @@ import academy.wakanda.sorrileadsbe.application.service.RespondentService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RespondentController implements RespondentApi {
 
-
+    @Autowired
     private RespondentService respondentService;
 
     @SneakyThrows
@@ -21,6 +22,6 @@ public class RespondentController implements RespondentApi {
         log.info("[start] RespondentController - postRespondent");
         RespondentResponse respondentCriado = respondentService.criaRespondent(respondentRequest);
         log.info("[finish] RespondentController - postRespondent");
-        return null;
+        return respondentCriado;
     }
 }

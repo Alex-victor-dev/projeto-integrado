@@ -4,5 +4,5 @@ import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
 import academy.wakanda.sorrileadsbe.application.api.RespondentResponse;
 
 public interface RespondentService {
-    RespondentResponse criaRespondent(RespondentRequest respondentRequest) throws InstantiationException, IllegalAccessException;
+    RespondentResponse criaRespondent(RespondentRequest respondentRequest) ;
 }

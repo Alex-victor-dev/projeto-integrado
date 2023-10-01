@@ -34,8 +34,7 @@ public class Respondent {
     private LocalDateTime date;
 
 
-    public Respondent(RespondentRequest respondentRequest)
-            throws InstantiationException, IllegalAccessException {
+    public Respondent(RespondentRequest respondentRequest) {
         this.name = respondentRequest.getName();
         this.phone = respondentRequest.getPhone();
         this.email = respondentRequest.getEmail();

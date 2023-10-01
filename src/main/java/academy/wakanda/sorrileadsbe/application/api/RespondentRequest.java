@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 @Value
 public class RespondentRequest {
 
-
     @NotBlank
     private String name;
     @NotBlank
@@ -20,6 +19,5 @@ public class RespondentRequest {
     @NotNull
     private MultipleChoice multipleChoice;
     private String text;
-
 
 }
