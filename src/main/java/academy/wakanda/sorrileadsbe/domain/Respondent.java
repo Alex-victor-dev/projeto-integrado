@@ -12,11 +12,9 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-
-
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Respondent {
     @Id
     private UUID idRespondent;
@@ -31,10 +29,10 @@ public class Respondent {
     private String text;
 
     private Status status;
-    private LocalDateTime registrationTime;
+    private LocalDateTime date;
 
 
-    public Status Respondent(String name, String phone, String email, MultipleChoice multipleChoice, String text)
+    public Respondent(String name, String phone, String email, MultipleChoice multipleChoice, String text)
             throws InstantiationException, IllegalAccessException {
         this.idRespondent = UUID.randomUUID();
         this.name = name;
@@ -42,17 +40,12 @@ public class Respondent {
         this.email = email;
         this.multipleChoice = multipleChoice;
         this.text = text;
-        this.registrationTime = LocalDateTime.now();
-        if (isValidForm()) {
-                return Status.COMPLETED;
-            } else {
-                return Status.INCOMPLETED;
-            }
+        this.status = Status.INCOMPLETED ;
+        this.date = LocalDateTime.now();
         }
 
-    private boolean isValidForm() {
-        return name != null && !name.isBlank() &&
-                phone != null && !phone.isBlank() &&
-               multipleChoice!=null;
-    }
+
+    public void amendStatus() {
+        this.status = Status.COMPLETED;}
+
 }
