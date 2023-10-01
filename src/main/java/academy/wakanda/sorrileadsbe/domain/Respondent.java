@@ -1,5 +1,6 @@
 package academy.wakanda.sorrileadsbe.domain;
 
+import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,13 +34,13 @@ public class Respondent {
     private LocalDateTime date;
 
 
-    public Respondent(String name, String phone, String email, MultipleChoice multipleChoice, String text)
+    public Respondent(RespondentRequest respondentRequest)
             throws InstantiationException, IllegalAccessException {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.multipleChoice = multipleChoice;
-        this.text = text;
+        this.name = respondentRequest.getName();
+        this.phone = respondentRequest.getPhone();
+        this.email = respondentRequest.getEmail();
+        this.multipleChoice = respondentRequest.getMultipleChoice();
+        this.text = respondentRequest.getText();
         this.status = Status.INCOMPLETED ;
         this.date = LocalDateTime.now();
         }

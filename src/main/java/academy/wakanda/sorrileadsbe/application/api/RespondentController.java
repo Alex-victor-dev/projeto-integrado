@@ -3,6 +3,7 @@ package academy.wakanda.sorrileadsbe.application.api;
 
 import academy.wakanda.sorrileadsbe.application.service.RespondentService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ public class RespondentController implements RespondentApi {
 
     private RespondentService respondentService;
 
+    @SneakyThrows
     @Override
     public RespondentResponse postRespondent(RespondentRequest respondentRequest) {
         log.info("[start] RespondentController - postRespondent");
