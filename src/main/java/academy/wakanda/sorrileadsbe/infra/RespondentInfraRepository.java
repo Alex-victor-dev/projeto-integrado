@@ -28,8 +28,8 @@ public class RespondentInfraRepository implements RespondentRepository {
     @Override
     public List<Respondent> searchAllRespondents() {
         log.info("[start] RespondentInfraRepository - searchAllRespondents");
-
+        List<Respondent> allRespondents = respondentSpringDataJPARepository.findAll();
         log.info("[finish] RespondentInfraRepository - searchAllRespondents");
-        return null;
+        return allRespondents;
     }
 }
