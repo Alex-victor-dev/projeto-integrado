@@ -2,6 +2,7 @@ package academy.wakanda.sorrileadsbe.application.api;
 
 
 import academy.wakanda.sorrileadsbe.application.service.RespondentService;
+import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
@@ -33,5 +34,12 @@ public class RespondentController implements RespondentApi {
         List<RespondentListResponse> respondents = respondentService.searchAllRespondents();
         log.info("[finish] RespondentController - getListRespondents");
         return respondents;
+    }
+
+    @Override
+    public List<RespondestsListResponsePerChoice> getRespondentsPerChoice(MultipleChoice multipleChoice) {
+        log.info("[start] RespondentController - getRespondentsPerChoice");
+        log.info("[finish] RespondentController - getRespondentsPerChoice");
+        return null;
     }
 }

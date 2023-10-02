@@ -1,5 +1,6 @@
 package academy.wakanda.sorrileadsbe.application.api;
 
+import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,4 +18,10 @@ public interface RespondentApi {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<RespondentListResponse> getListRespondents ();
+
+    @GetMapping(value = "/{multipleChoice}" )
+    @ResponseStatus(code = HttpStatus.OK)
+    List<RespondestsListResponsePerChoice> getRespondentsPerChoice
+            (@PathVariable MultipleChoice multipleChoice);
+
 }
