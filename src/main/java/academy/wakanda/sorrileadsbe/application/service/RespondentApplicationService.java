@@ -3,7 +3,9 @@ package academy.wakanda.sorrileadsbe.application.service;
 import academy.wakanda.sorrileadsbe.application.api.RespondentListResponse;
 import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
 import academy.wakanda.sorrileadsbe.application.api.RespondentResponse;
+import academy.wakanda.sorrileadsbe.application.api.RespondestsListResponsePerChoice;
 import academy.wakanda.sorrileadsbe.application.repository.RespondentRepository;
+import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import academy.wakanda.sorrileadsbe.domain.Respondent;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -37,5 +39,13 @@ public class RespondentApplicationService implements RespondentService {
         List<Respondent> respondents = respondentRepository.searchAllRespondents();
         log.info("[finish] RespondentApplicationService - searchAllRespondents");
         return RespondentListResponse.convert(respondents);
+    }
+
+    @Override
+    public List<RespondestsListResponsePerChoice> searchAllRespondentsPerChoice(MultipleChoice multipleChoice) {
+        log.info("[start] RespondentApplicationService - searchAllRespondentsPerChoice");
+        List<Respondent> respondents = respondentRepository.searchAllRespondentsPerChoice(multipleChoice);
+        log.info("[finish] RespondentApplicationService - searchAllRespondentsPerChoice");
+        return null;
     }
 }

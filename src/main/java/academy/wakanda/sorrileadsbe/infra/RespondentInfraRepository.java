@@ -1,6 +1,7 @@
 package academy.wakanda.sorrileadsbe.infra;
 
 import academy.wakanda.sorrileadsbe.application.repository.RespondentRepository;
+import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import academy.wakanda.sorrileadsbe.domain.Respondent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -31,5 +32,12 @@ public class RespondentInfraRepository implements RespondentRepository {
         List<Respondent> allRespondents = respondentSpringDataJPARepository.findAll();
         log.info("[finish] RespondentInfraRepository - searchAllRespondents");
         return allRespondents;
+    }
+
+    @Override
+    public List<Respondent> searchAllRespondentsPerChoice(MultipleChoice multipleChoice) {
+        log.info("[start] RespondentInfraRepository - searchAllRespondentsPerChoice");
+        log.info("[finish] RespondentInfraRepository - searchAllRespondentsPerChoice");
+        return null;
     }
 }

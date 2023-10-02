@@ -39,7 +39,8 @@ public class RespondentController implements RespondentApi {
     @Override
     public List<RespondestsListResponsePerChoice> getRespondentsPerChoice(MultipleChoice multipleChoice) {
         log.info("[start] RespondentController - getRespondentsPerChoice");
+        List<RespondestsListResponsePerChoice> respondents = respondentService.searchAllRespondentsPerChoice(multipleChoice);
         log.info("[finish] RespondentController - getRespondentsPerChoice");
-        return null;
+        return respondents;
     }
 }
