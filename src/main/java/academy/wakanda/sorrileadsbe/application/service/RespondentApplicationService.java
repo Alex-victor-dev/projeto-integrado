@@ -50,7 +50,8 @@ public class RespondentApplicationService implements RespondentService {
     @Override
     public RespondentDetailResponse getRespondentPerId(UUID idRespondent) {
         log.info("[start] RespondentApplicationService - getRespondentPerId");
+        Respondent respondent = respondentRepository.getRespondentPerId(idRespondent);
         log.info("[finish] RespondentApplicationService - getRespondentPerId");
-        return null;
+        return new RespondentDetailResponse(respondent);
     }
 }
