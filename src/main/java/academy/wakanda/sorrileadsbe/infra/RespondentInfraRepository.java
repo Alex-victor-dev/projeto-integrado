@@ -37,7 +37,8 @@ public class RespondentInfraRepository implements RespondentRepository {
     @Override
     public List<Respondent> searchAllRespondentsPerChoice(MultipleChoice multipleChoice) {
         log.info("[start] RespondentInfraRepository - searchAllRespondentsPerChoice");
+        List<Respondent> allRespondentsPerChoice = respondentSpringDataJPARepository.findByMultipleChoice(multipleChoice);
         log.info("[finish] RespondentInfraRepository - searchAllRespondentsPerChoice");
-        return null;
+        return allRespondentsPerChoice;
     }
 }

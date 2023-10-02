@@ -46,6 +46,6 @@ public class RespondentApplicationService implements RespondentService {
         log.info("[start] RespondentApplicationService - searchAllRespondentsPerChoice");
         List<Respondent> respondents = respondentRepository.searchAllRespondentsPerChoice(multipleChoice);
         log.info("[finish] RespondentApplicationService - searchAllRespondentsPerChoice");
-        return null;
+        return RespondestsListResponsePerChoice.convert(respondents);
     }
 }
