@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Log4j2
 @RequiredArgsConstructor
@@ -21,5 +23,13 @@ public class RespondentInfraRepository implements RespondentRepository {
         respondentSpringDataJPARepository.save(respondent);
         log.info("[finish] RespondentInfraRepository - save");
         return respondent;
+    }
+
+    @Override
+    public List<Respondent> searchAllRespondents() {
+        log.info("[start] RespondentInfraRepository - searchAllRespondents");
+
+        log.info("[finish] RespondentInfraRepository - searchAllRespondents");
+        return null;
     }
 }

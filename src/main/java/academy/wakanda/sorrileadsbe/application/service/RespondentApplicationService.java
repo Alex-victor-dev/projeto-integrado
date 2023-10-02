@@ -34,8 +34,8 @@ public class RespondentApplicationService implements RespondentService {
     @Override
     public List<RespondentListResponse> searchAllRespondents() {
         log.info("[start] RespondentApplicationService - searchAllRespondents");
-
+        List<Respondent> respondents = respondentRepository.searchAllRespondents();
         log.info("[finish] RespondentApplicationService - searchAllRespondents");
-        return null;
+        return RespondentListResponse.convert(respondents);
     }
 }
