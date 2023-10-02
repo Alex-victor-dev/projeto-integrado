@@ -15,6 +15,7 @@
 	<description>Responsável por gerenciar leads de clínicas dentárias</description>
 	<properties>
 		<java.version>11</java.version>
+		<spring-doc.version>1.6.9</spring-doc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,6 +35,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${spring-doc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
