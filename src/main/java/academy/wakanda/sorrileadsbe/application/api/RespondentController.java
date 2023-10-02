@@ -22,16 +22,16 @@ public class RespondentController implements RespondentApi {
     @Override
     public RespondentResponse postRespondent(RespondentRequest respondentRequest) {
         log.info("[start] RespondentController - postRespondent");
-        RespondentResponse respondentCriado = respondentService.criaRespondent(respondentRequest);
+        RespondentResponse respondentCreated = respondentService.createRespondent(respondentRequest);
         log.info("[finish] RespondentController - postRespondent");
-        return respondentCriado;
+        return respondentCreated;
     }
 
     @Override
     public List<RespondentListResponse> getListRespondents() {
         log.info("[start] RespondentController - getListRespondents");
-
+        List<RespondentListResponse> respondents = respondentService.searchAllRespondents();
         log.info("[finish] RespondentController - getListRespondents");
-        return null;
+        return respondents;
     }
 }

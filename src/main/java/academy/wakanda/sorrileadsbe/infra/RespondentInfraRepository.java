@@ -16,10 +16,10 @@ public class RespondentInfraRepository implements RespondentRepository {
     private RespondentSpringDataJPARepository respondentSpringDataJPARepository;
 
     @Override
-    public Respondent salva(Respondent respondent) {
-        log.info("[start] RespondentInfraRepository - salvar");
+    public Respondent save(Respondent respondent) {
+        log.info("[start] RespondentInfraRepository - save");
         respondentSpringDataJPARepository.save(respondent);
-        log.info("[finish] RespondentInfraRepository - salvar");
+        log.info("[finish] RespondentInfraRepository - save");
         return respondent;
     }
 }
