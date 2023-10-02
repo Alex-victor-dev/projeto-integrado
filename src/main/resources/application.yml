@@ -16,3 +16,6 @@ spring:
       properties:
         hibernate:
           default_schema: sorrileads
+springdoc:
+  swagger-ui:
+    path: /swagger
