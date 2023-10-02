@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @Log4j2
@@ -42,5 +43,12 @@ public class RespondentController implements RespondentApi {
         List<RespondestsListResponsePerChoice> respondents = respondentService.searchAllRespondentsPerChoice(multipleChoice);
         log.info("[finish] RespondentController - getRespondentsPerChoice");
         return respondents;
+    }
+
+    @Override
+    public RespondentDetailResponse getRespondentPerId(UUID idRespondent) {
+        log.info("[start] RespondentController - getRespondentPerId");
+        log.info("[finish] RespondentController - getRespondentPerId");
+        return null;
     }
 }
