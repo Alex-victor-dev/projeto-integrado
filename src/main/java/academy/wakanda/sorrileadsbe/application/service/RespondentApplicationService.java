@@ -1,9 +1,6 @@
 package academy.wakanda.sorrileadsbe.application.service;
 
-import academy.wakanda.sorrileadsbe.application.api.RespondentListResponse;
-import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
-import academy.wakanda.sorrileadsbe.application.api.RespondentResponse;
-import academy.wakanda.sorrileadsbe.application.api.RespondestsListResponsePerChoice;
+import academy.wakanda.sorrileadsbe.application.api.*;
 import academy.wakanda.sorrileadsbe.application.repository.RespondentRepository;
 import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import academy.wakanda.sorrileadsbe.domain.Respondent;
@@ -14,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Log4j2
@@ -47,5 +45,12 @@ public class RespondentApplicationService implements RespondentService {
         List<Respondent> respondents = respondentRepository.searchAllRespondentsPerChoice(multipleChoice);
         log.info("[finish] RespondentApplicationService - searchAllRespondentsPerChoice");
         return RespondestsListResponsePerChoice.convert(respondents);
+    }
+
+    @Override
+    public RespondentDetailResponse getRespondentPerId(UUID idRespondent) {
+        log.info("[start] RespondentApplicationService - getRespondentPerId");
+        log.info("[finish] RespondentApplicationService - getRespondentPerId");
+        return null;
     }
 }

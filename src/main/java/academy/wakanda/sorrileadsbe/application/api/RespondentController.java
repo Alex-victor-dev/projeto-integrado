@@ -48,7 +48,9 @@ public class RespondentController implements RespondentApi {
     @Override
     public RespondentDetailResponse getRespondentPerId(UUID idRespondent) {
         log.info("[start] RespondentController - getRespondentPerId");
+        log.info("[idRespondent] {}", idRespondent);
+        RespondentDetailResponse detailedResponse = respondentService.getRespondentPerId(idRespondent);
         log.info("[finish] RespondentController - getRespondentPerId");
-        return null;
+        return detailedResponse;
     }
 }
