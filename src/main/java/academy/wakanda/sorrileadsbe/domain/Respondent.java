@@ -36,11 +36,11 @@ public class Respondent {
 
 
     public Respondent(RespondentRequest respondentRequest) {
-        this.name = respondentRequest.getName();
-        this.phone = respondentRequest.getPhone();
-        this.email = respondentRequest.getEmail();
-        this.multipleChoice = respondentRequest.getMultipleChoice();
-        this.text = respondentRequest.getText();
+        this.name = respondentRequest.getRespondentForm().getAnswersJson().getNome();
+        this.phone = respondentRequest.getRespondentForm().getAnswersJson().getWhatsapp();
+        this.email = respondentRequest.getRespondentForm().getAnswersJson().getEmail();
+        this.multipleChoice = MultipleChoice.fromString(respondentRequest.getRespondentForm().getAnswersJson().getEspecialidade());
+        this.text = respondentRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
         this.status = Status.INCOMPLETED ;
         this.date = LocalDateTime.now();
         }

@@ -22,9 +22,9 @@ public class RespondentController implements RespondentApi {
 
     @SneakyThrows
     @Override
-    public RespondentResponse postRespondent(RespondentRequest respondentRequest) {
+    public RespondentResponse postRespondent(List<RespondentRequest> respondentRequest) {
         log.info("[start] RespondentController - postRespondent");
-        RespondentResponse respondentCreated = respondentService.createRespondent(respondentRequest);
+        RespondentResponse respondentCreated = respondentService.createRespondent(respondentRequest.get(0));
         log.info("[finish] RespondentController - postRespondent");
         return respondentCreated;
     }

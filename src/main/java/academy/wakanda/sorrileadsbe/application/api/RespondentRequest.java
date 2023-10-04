@@ -1,23 +1,16 @@
 package academy.wakanda.sorrileadsbe.application.api;
 
-import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
+import academy.wakanda.sorrileadsbe.domain.FormJson;
+import academy.wakanda.sorrileadsbe.domain.RespondentFormJson;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Value
 public class RespondentRequest {
 
-    @NotBlank
-    private String name;
-    @NotBlank
-    private String phone;
-    @Email
-    private String email;
-    @NotNull
-    private MultipleChoice multipleChoice;
-    private String text;
+    @JsonProperty("form")
+    private FormJson formJson;
+    @JsonProperty("respondent")
+    private RespondentFormJson respondentForm;
 
 }

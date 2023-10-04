@@ -14,7 +14,7 @@ public interface RespondentApi {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    RespondentResponse postRespondent (@Valid @RequestBody RespondentRequest respondentRequest);
+    RespondentResponse postRespondent (@Valid @RequestBody List<RespondentRequest> respondentRequest);
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
