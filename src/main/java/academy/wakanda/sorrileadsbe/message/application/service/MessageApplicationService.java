@@ -19,9 +19,9 @@ public class MessageApplicationService implements MessageService {
 	@Override
 	public MessageIntegratorResponse sendMessage(MessageRequest messageRequest) {
 		log.info("[inicia] MessageApplicationService - sendMessage");
-		log.info("[finaliza] MessageApplicationService - sendMessage");
 		log.info("[messageRequest] {}", messageRequest);
 		MessageIntegrator messageIntegrator = messageSendIntegrator.sendMessage(messageRequest);
+		log.info("[finaliza] MessageApplicationService - sendMessage");
 		return new MessageIntegratorResponse(messageIntegrator);
 	}
 

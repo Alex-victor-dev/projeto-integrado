@@ -16,9 +16,9 @@ public class MessageIntegratorController implements MessageIntegratorAPI {
 	@Override
 	public MessageIntegratorResponse sendMessage(MessageRequest messageRequest) {
 		log.info("[inicia] MessageIntegratorController - sendMessage");
-		log.info("[finaliza] MessageIntegratorController - sendMessage");
 		log.info("[messageRequest] {}", messageRequest);
 		MessageIntegratorResponse messageIntegrator = messageService.sendMessage(messageRequest);
+		log.info("[finaliza] MessageIntegratorController - sendMessage");
 		return messageIntegrator;
 	}
 

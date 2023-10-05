@@ -11,7 +11,7 @@ import academy.wakanda.sorrileadsbe.message.domain.MessageIntegrator;
 @FeignClient(name = "messageClientIntegrator", url = "https://api.z-api.io/instances/SUA_INSTANCIA/token/SEU_TOKEN/send-text")
 public interface MessageClientIntegrator {
 
-	@PostMapping("send-text")
+	@PostMapping("/send-text")
 	MessageIntegrator sendMessage(@RequestParam("instances") String instancia,
 								  @RequestParam("token") String token,
 								  @RequestBody  MessageRequest messageRequest) ;

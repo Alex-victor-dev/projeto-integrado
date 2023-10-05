@@ -16,8 +16,8 @@ public class MessageIntegratorResponse {
 	private String id;
 
 	public MessageIntegratorResponse(MessageIntegrator messageIntegrator) {
-		this.zaapId = messageIntegrator.getIdZap();
-		this.messageId = messageIntegrator.getIdMessage();
-		this.id = messageIntegrator.getIdPhone();
+		this.zaapId = messageIntegrator.getZaapId();
+		this.messageId = messageIntegrator.getMessageId();
+		this.id = messageIntegrator.getId();
 	}
 }

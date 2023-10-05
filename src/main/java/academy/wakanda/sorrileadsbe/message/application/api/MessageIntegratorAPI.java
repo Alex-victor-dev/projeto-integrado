@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public interface MessageIntegratorAPI {
 
-	@PostMapping("/send-message")
+	@PostMapping("/send-text")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	MessageIntegratorResponse sendMessage(@Valid @RequestBody MessageRequest messageRequest);
 }
