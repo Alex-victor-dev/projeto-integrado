@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.dao.DataIntegrityViolationException;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +17,6 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor
 public class RespondentInfraRepository implements RespondentRepository {
-
     @Autowired
     private RespondentSpringDataJPARepository respondentSpringDataJPARepository;
 
@@ -46,6 +44,10 @@ public class RespondentInfraRepository implements RespondentRepository {
     public List<Respondent> searchAllRespondentsPerChoice(MultipleChoice multipleChoice) {
         log.info("[start] RespondentInfraRepository - searchAllRespondentsPerChoice");
         List<Respondent> allRespondentsPerChoice = respondentSpringDataJPARepository.findByMultipleChoice(multipleChoice);
+        if (allRespondentsPerChoice.isEmpty()) {
+            throw APIException.build(HttpStatus.NOT_FOUND,
+                    "Nenhum Respondent encontrado para a escolha múltipla!");
+        }
         log.info("[finish] RespondentInfraRepository - searchAllRespondentsPerChoice");
         return allRespondentsPerChoice;
     }
@@ -56,7 +58,7 @@ public class RespondentInfraRepository implements RespondentRepository {
         Respondent respondent = respondentSpringDataJPARepository
                 .findById(idRespondent).orElseThrow(
                         ()-> APIException.build(HttpStatus.NOT_FOUND,
-                               "cliente não encontrado" ));
+                               "Respondent não encontrado!" ));
         log.info("[finish] RespondentInfraRepository - getRespondentPerId");
         return respondent;
     }
