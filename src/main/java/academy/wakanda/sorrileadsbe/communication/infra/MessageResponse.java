@@ -1,8 +1,5 @@
 package academy.wakanda.sorrileadsbe.communication.infra;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AccessLevel;
@@ -14,15 +11,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MessageResponse {
-
-	@NotBlank(message = "O número de telefone não pode estar em branco")
-	@Size(min = 10, max = 15, message = "O número de telefone deve ter entre 10 e 15 caracteres")
-	@JsonProperty("phone")
-	private String telefone;
-
-	@NotBlank(message = "A mensagem não pode estar em branco")
-	@JsonProperty("message")
-	private String mensagem;
 
 	@JsonProperty("zaapId")
 	private String zaapId;
