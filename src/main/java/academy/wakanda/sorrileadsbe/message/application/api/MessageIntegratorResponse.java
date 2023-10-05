@@ -1,20 +1,23 @@
 package academy.wakanda.sorrileadsbe.message.application.api;
 
+import academy.wakanda.sorrileadsbe.message.domain.MessageIntegrator;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MessageIntegratorResponse {
-	@NonNull
+
 	private String zaapId;
-	@NonNull
 	private String messageId;
-	@NonNull
 	private String id;
 
+	public MessageIntegratorResponse(MessageIntegrator messageIntegrator) {
+		this.zaapId = messageIntegrator.getIdZap();
+		this.messageId = messageIntegrator.getIdMessage();
+		this.id = messageIntegrator.getIdPhone();
+	}
 }
