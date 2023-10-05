@@ -1,7 +1,5 @@
 package academy.wakanda.sorrileadsbe.message.application.api;
 
-import javax.validation.Valid;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import academy.wakanda.sorrileadsbe.message.application.service.MessageService;
@@ -16,11 +14,11 @@ public class MessageIntegratorController implements MessageIntegratorAPI {
 	private final MessageService messageService;
 
 	@Override
-	public MessageIntegratorResponse sendMessage(@Valid MessageRequest messageRequest) {
+	public MessageIntegratorResponse sendMessage(MessageRequest messageRequest) {
 		log.info("[inicia] MessageIntegratorController - sendMessage");
 		log.info("[finaliza] MessageIntegratorController - sendMessage");
-		MessageIntegratorResponse messageIntegrator = messageService.sendMessage(messageRequest);
 		log.info("[messageRequest] {}", messageRequest);
+		MessageIntegratorResponse messageIntegrator = messageService.sendMessage(messageRequest);
 		return messageIntegrator;
 	}
 
