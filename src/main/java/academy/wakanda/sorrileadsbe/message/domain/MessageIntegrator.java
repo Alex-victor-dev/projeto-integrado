@@ -12,10 +12,18 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MessageIntegrator {
 
+	@JsonProperty("phone")
+	private String telefone;
+
+	@JsonProperty("message")
+	private String mensagem;
+
 	@JsonProperty("zaapId")
 	private String idZap;
+
 	@JsonProperty("messageId")
 	private String idMessage;
+
 	@JsonProperty("id")
 	private String idPhone;
 

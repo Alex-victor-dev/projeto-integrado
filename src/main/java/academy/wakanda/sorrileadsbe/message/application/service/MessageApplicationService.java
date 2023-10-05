@@ -20,7 +20,7 @@ public class MessageApplicationService implements MessageService {
 	public MessageIntegratorResponse sendMessage(@Valid MessageRequest messageRequest) {
 		log.info("[inicia] MessageApplicationService - sendMessage");
 		log.info("[finaliza] MessageApplicationService - sendMessage");
-		MessageIntegrator 
+		MessageIntegrator messageIntegrator = 
 		log.info("[messageRequest] {}", messageRequest);
 		return null;
 	}
