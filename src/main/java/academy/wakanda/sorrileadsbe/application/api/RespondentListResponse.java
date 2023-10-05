@@ -16,6 +16,7 @@ public class RespondentListResponse {
     private String email;
     private MultipleChoice multipleChoice;
     private String text;
+    private String registrationDate;
 
     public static List<RespondentListResponse> convert(List<Respondent> respondents) {
         return respondents.stream()
@@ -30,5 +31,6 @@ public class RespondentListResponse {
         this.email = respondent.getEmail();
         this.multipleChoice = respondent.getMultipleChoice();
         this.text = respondent.getText();
+        this.registrationDate = respondent.getRegistrationDate();
     }
 }

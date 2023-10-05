@@ -8,6 +8,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RespondentSpringDataJPARepository extends JpaRepository<Respondent, UUID> {
-
     List<Respondent> findByMultipleChoice(MultipleChoice multipleChoice);
 }

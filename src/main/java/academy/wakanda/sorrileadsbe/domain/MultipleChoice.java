@@ -12,5 +12,4 @@ public enum MultipleChoice {
         }
         throw new IllegalArgumentException("Nenhum valor correspondente para: " + text);
     }
-
 }

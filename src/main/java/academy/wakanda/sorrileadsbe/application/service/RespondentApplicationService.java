@@ -17,7 +17,6 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor
 public class RespondentApplicationService implements RespondentService {
-
     @Autowired
     private RespondentRepository respondentRepository;
 
@@ -31,6 +30,7 @@ public class RespondentApplicationService implements RespondentService {
                 .idRespondent(respondent.getIdRespondent())
                 .build();
     }
+
     @Override
     public List<RespondentListResponse> searchAllRespondents() {
         log.info("[start] RespondentApplicationService - searchAllRespondents");

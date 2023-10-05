@@ -16,11 +16,9 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor
 public class RespondentController implements RespondentApi {
-
     @Autowired
     private RespondentService respondentService;
 
-    @SneakyThrows
     @Override
     public RespondentResponse postRespondent(List<RespondentRequest> respondentRequest) {
         log.info("[start] RespondentController - postRespondent");

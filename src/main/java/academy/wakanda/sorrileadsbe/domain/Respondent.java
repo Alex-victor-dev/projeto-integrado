@@ -18,23 +18,20 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Respondent {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column(name= "id", updatable = false, unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", updatable = false, unique = true, nullable = false)
     private UUID idRespondent;
     @NotBlank
     private String name;
     @NotBlank
-    @Column(unique= true)
+    @Column(unique = true)
     private String phone;
     @Email
     private String email;
     @NotNull
     private MultipleChoice multipleChoice;
     private String text;
-
-    private Status status;
-    private LocalDateTime date;
-
+    private String registrationDate;
 
     public Respondent(RespondentRequest respondentRequest) {
         this.name = respondentRequest.getRespondentForm().getAnswersJson().getNome();
@@ -42,12 +39,6 @@ public class Respondent {
         this.email = respondentRequest.getRespondentForm().getAnswersJson().getEmail();
         this.multipleChoice = MultipleChoice.fromString(respondentRequest.getRespondentForm().getAnswersJson().getEspecialidade());
         this.text = respondentRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
-        this.status = Status.INCOMPLETED ;
-        this.date = LocalDateTime.now();
-        }
-
-
-    public void amendStatus() {
-        this.status = Status.COMPLETED;}
-
+        this.registrationDate = respondentRequest.getRespondentForm().getDate();
+    }
 }
