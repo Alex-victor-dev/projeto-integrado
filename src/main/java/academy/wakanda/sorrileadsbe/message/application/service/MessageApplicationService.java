@@ -22,7 +22,7 @@ public class MessageApplicationService implements MessageService {
 		log.info("[messageRequest] {}", messageRequest);
 		MessageIntegrator messageIntegrator = messageSendIntegrator.sendMessage(messageRequest);
 		log.info("[finaliza] MessageApplicationService - sendMessage");
-		return new MessageIntegratorResponse(messageIntegrator);
+		return  new MessageIntegratorResponse(messageIntegrator);
 	}
 
 }
