@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +25,11 @@ public class RespondentInfraRepository implements RespondentRepository {
     @Override
     public Respondent save(Respondent respondent) {
         log.info("[start] RespondentInfraRepository - save");
+        try {
         respondentSpringDataJPARepository.save(respondent);
+        } catch(DataIntegrityViolationException e){
+        throw APIException.build(HttpStatus.BAD_REQUEST, "Já existe um registro com esse phone!",e);
+        }
         log.info("[finish] RespondentInfraRepository - save");
         return respondent;
     }

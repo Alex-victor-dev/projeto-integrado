@@ -24,6 +24,7 @@ public class Respondent {
     @NotBlank
     private String name;
     @NotBlank
+    @Column(unique= true)
     private String phone;
     @Email
     private String email;

@@ -25,7 +25,7 @@ public interface RespondentApi {
     List<RespondestsListResponsePerChoice> getRespondentsPerChoice
             (@PathVariable MultipleChoice multipleChoice);
 
-    @GetMapping(value = "/Id/{idRespondent}")
+    @GetMapping(value = "/id/{idRespondent}")
     @ResponseStatus(code = HttpStatus.OK)
     RespondentDetailResponse getRespondentPerId(@PathVariable UUID idRespondent);
 
