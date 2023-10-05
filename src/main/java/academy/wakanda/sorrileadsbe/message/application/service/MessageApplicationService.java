@@ -1,7 +1,5 @@
 package academy.wakanda.sorrileadsbe.message.application.service;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
 
 import academy.wakanda.sorrileadsbe.message.application.api.MessageIntegratorResponse;
@@ -16,10 +14,10 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class MessageApplicationService implements MessageService {
 
-	private MessageSendIntegrator messageSendIntegrator;
+	private final MessageSendIntegrator messageSendIntegrator;
 
 	@Override
-	public MessageIntegratorResponse sendMessage(@Valid MessageRequest messageRequest) {
+	public MessageIntegratorResponse sendMessage(MessageRequest messageRequest) {
 		log.info("[inicia] MessageApplicationService - sendMessage");
 		log.info("[finaliza] MessageApplicationService - sendMessage");
 		log.info("[messageRequest] {}", messageRequest);
