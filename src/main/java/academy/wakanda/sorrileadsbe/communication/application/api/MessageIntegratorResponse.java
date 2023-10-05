@@ -1,6 +1,6 @@
-package academy.wakanda.sorrileadsbe.message.application.api;
+package academy.wakanda.sorrileadsbe.communication.application.api;
 
-import academy.wakanda.sorrileadsbe.message.domain.MessageIntegrator;
+import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ public class MessageIntegratorResponse {
 	private String messageId;
 	private String id;
 
-	public MessageIntegratorResponse(MessageIntegrator messageIntegrator) {
+	public MessageIntegratorResponse(MessageResponse messageIntegrator) {
 		this.zaapId = messageIntegrator.getZaapId();
 		this.messageId = messageIntegrator.getMessageId();
 		this.id = messageIntegrator.getId();

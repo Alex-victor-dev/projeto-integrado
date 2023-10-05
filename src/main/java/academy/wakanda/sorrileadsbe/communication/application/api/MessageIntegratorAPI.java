@@ -1,7 +1,8 @@
-package academy.wakanda.sorrileadsbe.message.application.api;
+package academy.wakanda.sorrileadsbe.communication.application.api;
 
 import javax.validation.Valid;
 
+import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,5 +16,5 @@ public interface MessageIntegratorAPI {
 
 	@PostMapping("/send-text")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	MessageIntegratorResponse sendMessage(@Valid @RequestBody MessageRequest messageRequest);
+	MessageResponse sendMessage(@Valid @RequestBody MessageRequest messageRequest);
 }

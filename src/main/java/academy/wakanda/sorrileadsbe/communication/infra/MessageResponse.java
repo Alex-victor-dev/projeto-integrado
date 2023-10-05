@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.message.domain;
+package academy.wakanda.sorrileadsbe.communication.infra;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,7 +13,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class MessageIntegrator {
+public class MessageResponse {
 
 	@NotBlank(message = "O número de telefone não pode estar em branco")
 	@Size(min = 10, max = 15, message = "O número de telefone deve ter entre 10 e 15 caracteres")

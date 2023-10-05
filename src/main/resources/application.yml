@@ -19,3 +19,14 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger
+
+sorrileads:
+  zapi:
+    server: ${ZAPI_URL_SERVER:https://api.z-api.io}
+    id-instancia: ${ZAPI_ID_INSTANCIA:3C44F0CF676920671ABEB2E461726623}
+    token: ${ZAPI_TOKEN:48BED091BCC9423A587A947B}
+
+
+logging:
+  level:
+    academy.wakanda.sorrileadsbe: ${LOG_LEVEL:debug}

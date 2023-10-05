@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.message.application.api;
+package academy.wakanda.sorrileadsbe.communication.application.api;
 
 import javax.validation.constraints.NotBlank;
 
