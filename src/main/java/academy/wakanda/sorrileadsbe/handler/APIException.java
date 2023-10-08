@@ -1,5 +1,6 @@
 package academy.wakanda.sorrileadsbe.handler;
 
+
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -7,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
+
 @Getter
 @Log4j2
 public class APIException extends RuntimeException {
+
 	private HttpStatus statusException;
 	private ErrorApiResponse bodyException;
 	
@@ -50,3 +53,4 @@ public class APIException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 }
+
