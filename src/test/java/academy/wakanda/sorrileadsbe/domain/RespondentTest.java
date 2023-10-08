@@ -2,6 +2,7 @@ package academy.wakanda.sorrileadsbe.domain;
 
 import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
 import academy.wakanda.sorrileadsbe.application.service.DataHelper;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 class RespondentTest {
     @Test
+    @DisplayName("testa se o Respondent é criado através do Request")
     void shouldCreateRespondentFromRespondentRequest() {
         // Given
         RespondentRequest request = DataHelper.createSampleRespondentRequest();
@@ -26,4 +28,5 @@ class RespondentTest {
         assertEquals("Sim", respondent.getText());
         assertEquals("2023-10-08", respondent.getRegistrationDate());
     }
+
 }
