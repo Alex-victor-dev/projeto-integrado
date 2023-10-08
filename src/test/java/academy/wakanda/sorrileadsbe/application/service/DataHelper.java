@@ -36,4 +36,15 @@ public class DataHelper {
         return new RespondentFormJson("2023/10/08", answersJson);
     }
 
+    public static RespondentRequest createSampleRespondentRequest() {
+        AnswersJson answersJson = new AnswersJson("Vastiane",
+                "71982099941", "vastiane@gmail.com",
+                "BOTOX",
+                "Sim");
+        RespondentFormJson respondentFormJson = new RespondentFormJson
+                ("2023-10-08", answersJson);
+        return new RespondentRequest(new FormJson
+                ("Test Form", "123456"), respondentFormJson);
+    }
 }
+
