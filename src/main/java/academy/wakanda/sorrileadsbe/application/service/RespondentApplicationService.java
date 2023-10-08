@@ -20,7 +20,6 @@ public class RespondentApplicationService implements RespondentService {
     @Autowired
     private RespondentRepository respondentRepository;
 
-    @SneakyThrows
     @Override
     public RespondentResponse createRespondent(RespondentRequest respondentRequest) {
         log.info("[start] RespondentApplicationService - createRespondent");

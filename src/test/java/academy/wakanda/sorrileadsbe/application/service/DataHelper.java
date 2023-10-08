@@ -8,32 +8,7 @@ import java.util.UUID;
 public class DataHelper {
 
     public static Respondent getTestRespondent() {
-        return Respondent.builder().
-                idRespondent(UUID.randomUUID())
-                .name("Lucas")
-                .phone("74982099941")
-                .email("lucas@gmail.com")
-                .multipleChoice(MultipleChoice.BOTOX)
-                .text("quero ficar linda!")
-                .registrationDate("2023-10-08")
-                .build();
-    }
-
-    public static RespondentRequest getTestRespondentRequest() {
-        FormJson formJson = getTestFormJson();
-        RespondentFormJson respondentFormJson = getTestRespondentFormJson();
-        return new RespondentRequest(formJson, respondentFormJson);
-    }
-
-    public static FormJson getTestFormJson() {
-        return new FormJson("Test Form", "123456");
-    }
-
-    public static RespondentFormJson getTestRespondentFormJson() {
-        AnswersJson answersJson = new AnswersJson("Vastiane",
-                "71982099941", "vastiane@gmail.com",
-                "BOTOX", "Sim");
-        return new RespondentFormJson("2023/10/08", answersJson);
+        return new Respondent(createSampleRespondentRequest());
     }
 
     public static RespondentRequest createSampleRespondentRequest() {
@@ -46,5 +21,15 @@ public class DataHelper {
         return new RespondentRequest(new FormJson
                 ("Test Form", "123456"), respondentFormJson);
     }
-}
 
+    public static RespondentRequest createSampleRespondentRequestInvalid() {
+        AnswersJson answersJson = new AnswersJson("Vastiane",
+                "73981272306", "vastiane@gmail.com",
+                "B",
+                "Sim");
+        RespondentFormJson respondentFormJson = new RespondentFormJson
+                ("2023-10-08", answersJson);
+        return new RespondentRequest(new FormJson
+                ("Test Form", "123456"), respondentFormJson);
+    }
+}

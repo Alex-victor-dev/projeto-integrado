@@ -36,7 +36,7 @@ class RespondentApplicationServiceTest {
     @DisplayName("Testa se cria respondent")
     void createRespondentTest() {
         // Given
-        RespondentRequest respondentRequest = DataHelper.getTestRespondentRequest();
+        RespondentRequest respondentRequest = DataHelper.createSampleRespondentRequest();
         Respondent testRespondent = DataHelper.getTestRespondent();
         when(respondentRepository.save(any(Respondent.class))).thenReturn(testRespondent);
 
