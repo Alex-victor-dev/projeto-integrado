@@ -2,9 +2,13 @@ package academy.wakanda.sorrileadsbe.application.api;
 
 import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import academy.wakanda.sorrileadsbe.domain.Respondent;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Value;
 
 @Value
+@AllArgsConstructor
+@Builder
 public class RespondentDetailResponse {
     private String name;
     private String phone;

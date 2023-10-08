@@ -1,21 +1,20 @@
 package academy.wakanda.sorrileadsbe.domain;
 
 import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Entity
 @Table(name = "respondent")
+@Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Respondent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
