@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /sorrileads
+
 spring:
   application:
     name: sorrileads
@@ -10,7 +14,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       properties:
