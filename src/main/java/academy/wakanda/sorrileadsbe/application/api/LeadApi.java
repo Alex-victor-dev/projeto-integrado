@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/respondent")
+@RequestMapping("/v1/lead")
 public interface LeadApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
