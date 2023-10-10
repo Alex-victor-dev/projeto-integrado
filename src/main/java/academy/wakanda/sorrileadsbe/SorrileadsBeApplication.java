@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-
-@RequestMapping("/")
-
 @Log4j2
 public class SorrileadsBeApplication {
 
