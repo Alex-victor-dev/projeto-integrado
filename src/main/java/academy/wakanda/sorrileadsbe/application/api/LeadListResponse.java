@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Value
 public class LeadListResponse {
-    private UUID idRespondent;
+    private UUID idLead;
     private String name;
     private String phone;
     private String email;
@@ -25,7 +25,7 @@ public class LeadListResponse {
     }
 
     public LeadListResponse(Lead lead) {
-        this.idRespondent = lead.getIdRespondent();
+        this.idLead = lead.getIdLead();
         this.name = lead.getName();
         this.phone = lead.getPhone();
         this.email = lead.getEmail();

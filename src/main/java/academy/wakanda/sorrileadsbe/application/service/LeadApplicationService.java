@@ -20,12 +20,12 @@ public class LeadApplicationService implements LeadService {
     private LeadRepository leadRepository;
 
     @Override
-    public LeadResponse createRespondent(LeadRequest leadRequest) {
-        log.info("[start] RespondentApplicationService - createRespondent");
+    public LeadResponse createLead(LeadRequest leadRequest) {
+        log.info("[start] RespondentApplicationService - createLead");
         Lead lead = leadRepository.save(new Lead(leadRequest));
-        log.info("[finish] RespondentApplicationService - createRespondent");
+        log.info("[finish] RespondentApplicationService - createLead");
         return LeadResponse.builder()
-                .idRespondent(lead.getIdRespondent())
+                .idLead(lead.getIdLead())
                 .build();
     }
 

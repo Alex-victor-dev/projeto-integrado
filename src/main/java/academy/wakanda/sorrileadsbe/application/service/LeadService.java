@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LeadService {
-    LeadResponse createRespondent(LeadRequest leadRequest);
+    LeadResponse createLead(LeadRequest leadRequest);
     List<LeadListResponse> searchAllRespondents();
     List<LeadListResponsePerChoice> searchAllRespondentsPerChoice(MultipleChoice multipleChoice);
     LeadDetailResponse getRespondentPerId(UUID idRespondent);

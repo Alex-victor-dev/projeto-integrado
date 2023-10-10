@@ -9,7 +9,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 @Value
 public class LeadListResponsePerChoice {
-    private UUID idRespondent;
+    private UUID idLead;
     private String name;
     private String phone;
     private String email;
@@ -24,7 +24,7 @@ public class LeadListResponsePerChoice {
     }
 
     public LeadListResponsePerChoice(Lead lead) {
-        this.idRespondent = lead.getIdRespondent();
+        this.idLead = lead.getIdLead();
         this.name = lead.getName();
         this.phone = lead.getPhone();
         this.email = lead.getEmail();

@@ -19,7 +19,7 @@ public class Lead {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
-    private UUID idRespondent;
+    private UUID idLead;
     @NotBlank
     private String name;
     @NotBlank

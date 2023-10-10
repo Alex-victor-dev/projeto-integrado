@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface LeadApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    LeadResponse postRespondent (@Valid @RequestBody List<LeadRequest> leadRequest);
+    LeadResponse postLead(@Valid @RequestBody List<LeadRequest> leadRequest);
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)

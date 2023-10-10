@@ -42,21 +42,21 @@ class LeadApplicationServiceTest {
         when(leadRepository.save(any(Lead.class))).thenReturn(testLead);
 
         // When
-        LeadResponse response = leadApplicationService.createRespondent(leadRequest);
+        LeadResponse response = leadApplicationService.createLead(leadRequest);
 
         // Then
-        assertEquals(testLead.getIdRespondent(), response.getIdRespondent());
+        assertEquals(testLead.getIdLead(), response.getIdLead());
         verify(leadRepository).save(any(Lead.class));
     }
 
     @Test
-    @DisplayName("Testa se retorna exception!")
+    @DisplayName("Testa se propaga Apiexception!")
     void createRespondentInvalidTest() {
         LeadRequest leadRequest = DataHelper.createSampleRespondentRequest();
 
         when(leadRepository.save(any(Lead.class))).thenThrow(APIException.build(HttpStatus.BAD_REQUEST, "Já existe um registro com esse phone!"));
 
-        APIException e = assertThrows(APIException.class, () -> leadApplicationService.createRespondent(leadRequest) );
+        APIException e = assertThrows(APIException.class, () -> leadApplicationService.createLead(leadRequest) );
         assertEquals(HttpStatus.BAD_REQUEST, e.getStatusException());
         assertEquals("Já existe um registro com esse phone!", e.getMessage());
     }
