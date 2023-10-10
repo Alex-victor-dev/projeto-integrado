@@ -23,15 +23,17 @@ public class CommunicationInfraIntegrator implements CommunicationIntegrator {
 			MessageResponse messageResponse = zapiClientIntegrator.sendMessage(messageRequest);
 			log.info("[messageResponse] {}", messageResponse);
 			return messageResponse;
-			
+
 		} catch (FeignException feignException) {
-			log.error("Erro ao chamar a API externa com FeignException", feignException);
-			throw APIException.build(HttpStatus.BAD_REQUEST, "Falha Na Integração com a API DO ZAPI");
-		
+			int statusCode = feignException.status();
+			String responseBody = feignException.contentUTF8();
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Falha na Integração com a API do ZAPI. Status: "
+					+ statusCode + ", Response Body: " + responseBody);
+
 		} catch (Exception e) {
 			log.error("Ocorreu uma exceção não tratada", e);
 			throw APIException.build(HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu uma exceção Não Tratada");
-			
+
 		} finally {
 			log.info("[finaliza] CommunicationInfraIntegrator - sendMessage");
 		}
