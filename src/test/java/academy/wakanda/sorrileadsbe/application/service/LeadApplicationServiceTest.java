@@ -4,18 +4,19 @@ import academy.wakanda.sorrileadsbe.application.api.*;
 import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import academy.wakanda.sorrileadsbe.domain.Lead;
+import academy.wakanda.sorrileadsbe.handler.APIException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -46,6 +47,18 @@ class LeadApplicationServiceTest {
         // Then
         assertEquals(testLead.getIdRespondent(), response.getIdRespondent());
         verify(leadRepository).save(any(Lead.class));
+    }
+
+    @Test
+    @DisplayName("Testa se retorna exception!")
+    void createRespondentInvalidTest() {
+        LeadRequest leadRequest = DataHelper.createSampleRespondentRequest();
+
+        when(leadRepository.save(any(Lead.class))).thenThrow(APIException.build(HttpStatus.BAD_REQUEST, "Já existe um registro com esse phone!"));
+
+        APIException e = assertThrows(APIException.class, () -> leadApplicationService.createRespondent(leadRequest) );
+        assertEquals(HttpStatus.BAD_REQUEST, e.getStatusException());
+        assertEquals("Já existe um registro com esse phone!", e.getMessage());
     }
 
     @Test

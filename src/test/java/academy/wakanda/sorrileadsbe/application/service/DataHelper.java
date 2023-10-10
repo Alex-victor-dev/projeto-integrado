@@ -21,7 +21,7 @@ public class DataHelper {
     }
 
     public static LeadRequest createSampleRespondentRequestInvalid() {
-        AnswersJson answersJson = new AnswersJson("Vastiane",
+        AnswersJson answersJson = new AnswersJson("",
                 "73981272306", "vastiane@gmail.com",
                 "B",
                 "Sim");

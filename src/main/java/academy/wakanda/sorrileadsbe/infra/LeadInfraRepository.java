@@ -43,13 +43,13 @@ public class LeadInfraRepository implements LeadRepository {
     @Override
     public List<Lead> searchAllRespondentsPerChoice(MultipleChoice multipleChoice) {
         log.info("[start] RespondentInfraRepository - searchAllRespondentsPerChoice");
-        List<Lead> allRespondentsPerChoice = leadSpringDataJPARepository.findByMultipleChoice(multipleChoice);
-        if (allRespondentsPerChoice.isEmpty()) {
+        List<Lead> allLeadPerChoice = leadSpringDataJPARepository.findByMultipleChoice(multipleChoice);
+        if (allLeadPerChoice.isEmpty()) {
             throw APIException.build(HttpStatus.NOT_FOUND,
                     "Nenhum Respondent encontrado para a escolha múltipla!");
         }
         log.info("[finish] RespondentInfraRepository - searchAllRespondentsPerChoice");
-        return allRespondentsPerChoice;
+        return allLeadPerChoice;
     }
 
     @Override
