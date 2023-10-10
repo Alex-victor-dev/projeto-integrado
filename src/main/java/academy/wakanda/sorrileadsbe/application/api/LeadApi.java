@@ -9,21 +9,21 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/respondent")
-public interface RespondentApi {
+public interface LeadApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    RespondentResponse postRespondent (@Valid @RequestBody List<RespondentRequest> respondentRequest);
+    LeadResponse postRespondent (@Valid @RequestBody List<LeadRequest> leadRequest);
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    List<RespondentListResponse> getListRespondents ();
+    List<LeadListResponse> getListRespondents ();
 
     @GetMapping(value = "/{multipleChoice}" )
     @ResponseStatus(code = HttpStatus.OK)
-    List<RespondestsListResponsePerChoice> getRespondentsPerChoice
+    List<LeadListResponsePerChoice> getRespondentsPerChoice
             (@PathVariable MultipleChoice multipleChoice);
 
     @GetMapping(value = "/id/{idRespondent}")
     @ResponseStatus(code = HttpStatus.OK)
-    RespondentDetailResponse getRespondentPerId(@PathVariable UUID idRespondent);
+    LeadDetailResponse getRespondentPerId(@PathVariable UUID idRespondent);
 }

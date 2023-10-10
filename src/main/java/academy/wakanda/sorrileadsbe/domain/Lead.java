@@ -1,6 +1,6 @@
 package academy.wakanda.sorrileadsbe.domain;
 
-import academy.wakanda.sorrileadsbe.application.api.RespondentRequest;
+import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,11 +11,11 @@ import java.util.UUID;
 
 @Getter
 @Entity
-@Table(name = "respondent")
+@Table(name = "lead")
 @Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Respondent {
+public class Lead {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
@@ -32,12 +32,12 @@ public class Respondent {
     private String text;
     private String registrationDate;
 
-    public Respondent(RespondentRequest respondentRequest) {
-        this.name = respondentRequest.getRespondentForm().getAnswersJson().getNome();
-        this.phone = respondentRequest.getRespondentForm().getAnswersJson().getWhatsapp();
-        this.email = respondentRequest.getRespondentForm().getAnswersJson().getEmail();
-        this.multipleChoice = MultipleChoice.fromString(respondentRequest.getRespondentForm().getAnswersJson().getEspecialidade());
-        this.text = respondentRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
-        this.registrationDate = respondentRequest.getRespondentForm().getDate();
+    public Lead(LeadRequest leadRequest) {
+        this.name = leadRequest.getRespondentForm().getAnswersJson().getNome();
+        this.phone = leadRequest.getRespondentForm().getAnswersJson().getWhatsapp();
+        this.email = leadRequest.getRespondentForm().getAnswersJson().getEmail();
+        this.multipleChoice = MultipleChoice.fromString(leadRequest.getRespondentForm().getAnswersJson().getEspecialidade());
+        this.text = leadRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
+        this.registrationDate = leadRequest.getRespondentForm().getDate();
     }
 }

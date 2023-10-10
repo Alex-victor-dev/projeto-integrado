@@ -1,10 +1,9 @@
 package academy.wakanda.sorrileadsbe.application.api;
 
 
-import academy.wakanda.sorrileadsbe.application.service.RespondentService;
+import academy.wakanda.sorrileadsbe.application.service.LeadService;
 import academy.wakanda.sorrileadsbe.domain.MultipleChoice;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,39 +14,39 @@ import java.util.UUID;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-public class RespondentController implements RespondentApi {
+public class LeadController implements LeadApi {
     @Autowired
-    private RespondentService respondentService;
+    private LeadService leadService;
 
     @Override
-    public RespondentResponse postRespondent(List<RespondentRequest> respondentRequest) {
+    public LeadResponse postRespondent(List<LeadRequest> leadRequest) {
         log.info("[start] RespondentController - postRespondent");
-        RespondentResponse respondentCreated = respondentService.createRespondent(respondentRequest.get(0));
+        LeadResponse respondentCreated = leadService.createRespondent(leadRequest.get(0));
         log.info("[finish] RespondentController - postRespondent");
         return respondentCreated;
     }
 
     @Override
-    public List<RespondentListResponse> getListRespondents() {
+    public List<LeadListResponse> getListRespondents() {
         log.info("[start] RespondentController - getListRespondents");
-        List<RespondentListResponse> respondents = respondentService.searchAllRespondents();
+        List<LeadListResponse> respondents = leadService.searchAllRespondents();
         log.info("[finish] RespondentController - getListRespondents");
         return respondents;
     }
 
     @Override
-    public List<RespondestsListResponsePerChoice> getRespondentsPerChoice(MultipleChoice multipleChoice) {
+    public List<LeadListResponsePerChoice> getRespondentsPerChoice(MultipleChoice multipleChoice) {
         log.info("[start] RespondentController - getRespondentsPerChoice");
-        List<RespondestsListResponsePerChoice> respondents = respondentService.searchAllRespondentsPerChoice(multipleChoice);
+        List<LeadListResponsePerChoice> respondents = leadService.searchAllRespondentsPerChoice(multipleChoice);
         log.info("[finish] RespondentController - getRespondentsPerChoice");
         return respondents;
     }
 
     @Override
-    public RespondentDetailResponse getRespondentPerId(UUID idRespondent) {
+    public LeadDetailResponse getRespondentPerId(UUID idRespondent) {
         log.info("[start] RespondentController - getRespondentPerId");
         log.info("[idRespondent] {}", idRespondent);
-        RespondentDetailResponse detailedResponse = respondentService.getRespondentPerId(idRespondent);
+        LeadDetailResponse detailedResponse = leadService.getRespondentPerId(idRespondent);
         log.info("[finish] RespondentController - getRespondentPerId");
         return detailedResponse;
     }

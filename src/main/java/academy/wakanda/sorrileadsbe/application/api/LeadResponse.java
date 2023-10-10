@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 @Value
 @Builder
-public class RespondentResponse {
+public class LeadResponse {
     @Id
     private UUID idRespondent;
 }

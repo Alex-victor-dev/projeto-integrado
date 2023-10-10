@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
 @Value
-public class RespondentRequest {
+public class LeadRequest {
 
   @JsonProperty("form")
    private FormJson formJson;
