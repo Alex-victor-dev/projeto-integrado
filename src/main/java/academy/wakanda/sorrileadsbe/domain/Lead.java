@@ -2,7 +2,6 @@ package academy.wakanda.sorrileadsbe.domain;
 
 import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

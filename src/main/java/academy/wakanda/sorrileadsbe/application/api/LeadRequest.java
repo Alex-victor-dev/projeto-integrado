@@ -12,6 +12,4 @@ public class LeadRequest {
    private FormJson formJson;
     @JsonProperty("respondent")
     private RespondentFormJson respondentForm;
-
-
 }
