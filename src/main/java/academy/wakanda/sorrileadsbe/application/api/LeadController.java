@@ -12,13 +12,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LeadController implements LeadApi {
     @Autowired
-    private LeadService leadService;
+    private final LeadService leadService;
 
     @Override
     public LeadResponse postLead(List<LeadRequest> leadRequest) {
-        log.info("[start] RespondentController - postLead");
+        log.info("[start]  LeadController - postLead");
         LeadResponse leadCreated = leadService.createLead(leadRequest.get(0));
-        log.info("[finish] RespondentController - postLead");
+        log.info("[finish]  LeadController - postLead");
         return leadCreated;
     }
 }

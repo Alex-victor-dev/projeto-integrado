@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LeadApplicationService implements LeadService {
     @Autowired
-    private LeadRepository leadRepository;
+    private final LeadRepository leadRepository;
 
     @Override
     public LeadResponse createLead(LeadRequest leadRequest) {
-        log.info("[start] RespondentApplicationService - createLead");
+        log.info("[start]  LeadApplicationService- createLead");
         Lead lead = leadRepository.save(new Lead(leadRequest));
-        log.info("[finish] RespondentApplicationService - createLead");
+        log.info("[finish]  LeadApplicationService - createLead");
         return LeadResponse.builder()
                 .idLead(lead.getIdLead())
                 .build();

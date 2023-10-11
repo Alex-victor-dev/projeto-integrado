@@ -15,17 +15,17 @@ import org.springframework.dao.DataIntegrityViolationException;
 @RequiredArgsConstructor
 public class LeadInfraRepository implements LeadRepository {
     @Autowired
-    private LeadSpringDataJPARepository leadSpringDataJPARepository;
+    private final LeadSpringDataJPARepository leadSpringDataJPARepository;
 
     @Override
     public Lead save(Lead lead) {
-        log.info("[start] RespondentInfraRepository - save");
+        log.info("[start] LeadInfraRepository - save");
         try {
         leadSpringDataJPARepository.save(lead);
         } catch(DataIntegrityViolationException e){
         throw APIException.build(HttpStatus.BAD_REQUEST, "Já existe um registro com esse phone!",e);
         }
-        log.info("[finish] RespondentInfraRepository - save");
+        log.info("[finish] LeadInfraRepository - save");
         return lead;
     }
 }

@@ -10,5 +10,4 @@ public class RespondentFormJson {
     @JsonProperty("answers")
     private AnswersJson answersJson;
 
-
 }
