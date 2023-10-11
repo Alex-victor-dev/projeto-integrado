@@ -5,14 +5,12 @@ import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.domain.Lead;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
 public class LeadApplicationService implements LeadService {
-    @Autowired
     private final LeadRepository leadRepository;
 
     @Override
@@ -20,8 +18,6 @@ public class LeadApplicationService implements LeadService {
         log.info("[start]  LeadApplicationService- createLead");
         Lead lead = leadRepository.save(new Lead(leadRequest));
         log.info("[finish]  LeadApplicationService - createLead");
-        return LeadResponse.builder()
-                .idLead(lead.getIdLead())
-                .build();
+        return new LeadResponse(lead);
     }
 }
