@@ -31,11 +31,11 @@ public class Lead {
     private String registrationDate;
 
     public Lead(LeadRequest leadRequest) {
-        this.name = leadRequest.getRespondentForm().getAnswersJson().getNome();
-        this.phone = leadRequest.getRespondentForm().getAnswersJson().getWhatsapp();
-        this.email = leadRequest.getRespondentForm().getAnswersJson().getEmail();
-        this.especialidadeInteressada = EspecialidadeInteressada.fromString(leadRequest.getRespondentForm().getAnswersJson().getEspecialidade());
-        this.perguntaEspecificaLead = leadRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
-        this.registrationDate = leadRequest.getRespondentForm().getDate();
+        this.name = leadRequest.getNome();
+        this.phone = leadRequest.getPhone();
+        this.email = leadRequest.getEmail();
+        this.especialidadeInteressada = EspecialidadeInteressada.fromString(leadRequest.getEspecialidadeInteressada());
+        this.perguntaEspecificaLead = leadRequest.getPerguntaEspecificaLead();
+        this.registrationDate = leadRequest.getRegistrationDate();
     }
 }
