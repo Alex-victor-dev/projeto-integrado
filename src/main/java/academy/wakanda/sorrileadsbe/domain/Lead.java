@@ -30,6 +30,7 @@ public class Lead {
     private MultipleChoice multipleChoice;
     private String text;
     private String registrationDate;
+    private boolean resultado;
 
     public Lead(LeadRequest leadRequest) {
         this.name = leadRequest.getRespondentForm().getAnswersJson().getNome();
