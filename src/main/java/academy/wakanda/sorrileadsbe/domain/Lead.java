@@ -11,7 +11,6 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "lead")
-@Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Lead {
