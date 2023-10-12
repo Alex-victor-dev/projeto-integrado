@@ -7,7 +7,7 @@ spring:
     name: sorrileads
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres?currentSchema=sorrileads}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
   jpa:
