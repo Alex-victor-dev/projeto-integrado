@@ -26,16 +26,16 @@ public class Lead {
     @Email
     private String email;
     @NotNull
-    private MultipleChoice multipleChoice;
-    private String text;
+    private EspecialidadeInteressada especialidadeInteressada;
+    private String perguntaEspecificaLead;
     private String registrationDate;
 
     public Lead(LeadRequest leadRequest) {
         this.name = leadRequest.getRespondentForm().getAnswersJson().getNome();
         this.phone = leadRequest.getRespondentForm().getAnswersJson().getWhatsapp();
         this.email = leadRequest.getRespondentForm().getAnswersJson().getEmail();
-        this.multipleChoice = MultipleChoice.fromString(leadRequest.getRespondentForm().getAnswersJson().getEspecialidade());
-        this.text = leadRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
+        this.especialidadeInteressada = EspecialidadeInteressada.fromString(leadRequest.getRespondentForm().getAnswersJson().getEspecialidade());
+        this.perguntaEspecificaLead = leadRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
         this.registrationDate = leadRequest.getRespondentForm().getDate();
     }
 }
