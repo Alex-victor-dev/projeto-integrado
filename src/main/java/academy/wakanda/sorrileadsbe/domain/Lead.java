@@ -21,7 +21,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Getter
 @Entity
 @Table(name = "lead")
@@ -44,7 +46,7 @@ public class Lead {
 	private MultipleChoice multipleChoice;
 	private String text;
 	private String registrationDate;
-	@Column(nullable = true)
+	@Column(name = "resultado")
 	private boolean resultado;
 
 	public Lead(LeadRequest leadRequest) {
@@ -58,14 +60,19 @@ public class Lead {
 	}
 
 	public void enviaMensagem(CommunicationService communicationService, MessageRequest messageRequest) {
-		MessageResponse response = communicationService.sendMessage(messageRequest);
-
-		if (response != null && response.getZaapId() != null && response.getMessageId() != null
-				&& response.getId() != null) {
-			this.resultado = true;
-		} else {
+		try {
+			log.info("[Inicia] - Lead - enviaMensagem");
+			MessageResponse response = communicationService.sendMessage(messageRequest);
+			if (response != null && response.getZaapId() != null && response.getMessageId() != null
+					&& response.getId() != null) {
+				this.resultado = true;
+			} else {
+				this.resultado = false;
+			}
+		} catch (Exception e) {
 			this.resultado = false;
 		}
+		log.info("[finaliza] - Lead - enviaMensagem. Resultado: {}", this.resultado);
 	}
 
 }
