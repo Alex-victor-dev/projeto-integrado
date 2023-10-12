@@ -13,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
@@ -47,7 +48,7 @@ public class Lead {
 	private String text;
 	private String registrationDate;
 	@Column(name = "resultado")
-	private boolean resultado;
+	private boolean enviouMensagenDeBoasVindas;
 
 	public Lead(LeadRequest leadRequest) {
 		this.name = leadRequest.getRespondentForm().getAnswersJson().getNome();
@@ -59,20 +60,21 @@ public class Lead {
 		this.registrationDate = leadRequest.getRespondentForm().getDate();
 	}
 
-	public void enviaMensagem(CommunicationService communicationService, MessageRequest messageRequest) {
+	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository,
+			MessageRequest messageRequest) {
 		try {
 			log.info("[Inicia] - Lead - enviaMensagem");
 			MessageResponse response = communicationService.sendMessage(messageRequest);
 			if (response != null && response.getZaapId() != null && response.getMessageId() != null
 					&& response.getId() != null) {
-				this.resultado = true;
+				this.enviouMensagenDeBoasVindas = true;
 			} else {
-				this.resultado = false;
+				this.enviouMensagenDeBoasVindas = false;
 			}
 		} catch (Exception e) {
-			this.resultado = false;
+			this.enviouMensagenDeBoasVindas = false;
 		}
-		log.info("[finaliza] - Lead - enviaMensagem. Resultado: {}", this.resultado);
+		leadRepository.save(this);
+		log.info("[finaliza] - Lead - enviaMensagem. Resultado: {}", this.enviouMensagenDeBoasVindas);
 	}
-
 }

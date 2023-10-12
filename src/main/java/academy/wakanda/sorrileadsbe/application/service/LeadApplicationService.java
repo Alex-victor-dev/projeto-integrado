@@ -25,7 +25,7 @@ public class LeadApplicationService implements LeadService {
 		log.info("[start]  LeadApplicationService- createLead");
 		Lead lead = leadRepository.save(new Lead(leadRequest));
 		MessageRequest messageRequest = new MessageRequest(leadRequest);
-		lead.enviaMensagem(communicationService, messageRequest);
+		lead.enviaMensagem(communicationService,leadRepository, messageRequest);
 		log.info("[finish]  LeadApplicationService - createLead");
 		return LeadResponse.builder().idLead(lead.getIdLead()).build();
 	}
