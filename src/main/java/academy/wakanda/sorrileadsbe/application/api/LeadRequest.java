@@ -8,8 +8,8 @@ import lombok.Value;
 @Value
 public class LeadRequest {
 
-  @JsonProperty("form")
-   private FormJson formJson;
-    @JsonProperty("respondent")
-    private RespondentFormJson respondentForm;
+	@JsonProperty("form")
+	private FormJson formJson;
+	@JsonProperty("respondent")
+	private RespondentFormJson respondentForm;
 }
