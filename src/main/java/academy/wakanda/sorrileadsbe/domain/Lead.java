@@ -44,6 +44,7 @@ public class Lead {
 	private MultipleChoice multipleChoice;
 	private String text;
 	private String registrationDate;
+	@Column(nullable = true)
 	private boolean resultado;
 
 	public Lead(LeadRequest leadRequest) {
