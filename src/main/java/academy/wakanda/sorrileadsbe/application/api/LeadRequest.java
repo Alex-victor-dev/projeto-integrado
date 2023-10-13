@@ -4,11 +4,13 @@ import academy.wakanda.sorrileadsbe.domain.AnswersJson;
 import academy.wakanda.sorrileadsbe.domain.FormJson;
 import academy.wakanda.sorrileadsbe.domain.RespondentFormJson;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Value;
+import lombok.*;
 
 import java.util.Optional;
 
-@Value
+@Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class LeadRequest {
 
   @JsonProperty("form")
@@ -56,4 +58,7 @@ public class LeadRequest {
                 .map(RespondentFormJson::getDate)
                 .orElse(null);
     }
+
+
+
 }
