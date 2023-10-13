@@ -5,7 +5,6 @@ import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class AnswersJson {
     @JsonProperty("Qual seu nome?")
     private String nome;

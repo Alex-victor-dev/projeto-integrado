@@ -30,7 +30,7 @@ class LeadApplicationServiceTest {
     void createRespondentTest() {
         // Given
         LeadRequest leadRequest = DataHelper.createSimpleJsonLead();
-        Lead testLead = DataHelper.getTestRespondent();
+        Lead testLead = DataHelper.getTestLead();
         when(leadRepository.save(any(Lead.class))).thenReturn(testLead);
 
         // When

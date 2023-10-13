@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class LeadRequest {
 
   @JsonProperty("form")

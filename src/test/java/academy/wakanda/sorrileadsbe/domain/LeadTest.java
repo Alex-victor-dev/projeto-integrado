@@ -16,7 +16,6 @@ class LeadTest {
     void shouldCreateRespondentFromRespondentRequest() {
         // Given
         LeadRequest request = DataHelper.createSimpleJsonLead();
-
         // When
         Lead lead = new Lead(request);
 
