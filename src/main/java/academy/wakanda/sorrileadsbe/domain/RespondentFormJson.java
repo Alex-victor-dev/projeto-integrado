@@ -1,10 +1,10 @@
 package academy.wakanda.sorrileadsbe.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Value;
-@AllArgsConstructor
-@Value
+import lombok.*;
+
+@Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RespondentFormJson {
     private String date;
     @JsonProperty("answers")

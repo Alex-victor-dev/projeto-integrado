@@ -19,7 +19,6 @@ import academy.wakanda.sorrileadsbe.communication.application.service.Communicat
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -28,7 +27,6 @@ import lombok.extern.log4j.Log4j2;
 @Getter
 @Entity
 @Table(name = "lead")
-@Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Lead {
@@ -44,20 +42,19 @@ public class Lead {
 	@Email
 	private String email;
 	@NotNull
-	private MultipleChoice multipleChoice;
-	private String text;
+	private EspecialidadeInteressada especialidadeInteressada;
+	private String perguntaEspecificaLead;
 	private String registrationDate;
 	@Column(name = "resultado")
 	private boolean enviouMensagenDeBoasVindas;
 
 	public Lead(LeadRequest leadRequest) {
-		this.name = leadRequest.getRespondentForm().getAnswersJson().getNome();
-		this.phone = leadRequest.getRespondentForm().getAnswersJson().getWhatsapp();
-		this.email = leadRequest.getRespondentForm().getAnswersJson().getEmail();
-		this.multipleChoice = MultipleChoice
-				.fromString(leadRequest.getRespondentForm().getAnswersJson().getEspecialidade());
-		this.text = leadRequest.getRespondentForm().getAnswersJson().getPerguntaEspecifica();
-		this.registrationDate = leadRequest.getRespondentForm().getDate();
+		this.name = leadRequest.getNome();
+		this.phone = leadRequest.getPhone();
+		this.email = leadRequest.getEmail();
+		this.especialidadeInteressada = EspecialidadeInteressada.fromString(leadRequest.getEspecialidadeInteressada());
+		this.perguntaEspecificaLead = leadRequest.getPerguntaEspecificaLead();
+		this.registrationDate = leadRequest.getRegistrationDate();
 	}
 
 	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository,

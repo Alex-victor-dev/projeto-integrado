@@ -1,10 +1,10 @@
 package academy.wakanda.sorrileadsbe.domain;
 
-import lombok.AllArgsConstructor;
+import lombok.*;
 
-@AllArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FormJson {
    private String form_name;
    private String form_id;
-
 }

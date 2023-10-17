@@ -1,8 +1,7 @@
 package academy.wakanda.sorrileadsbe.handler;
 
-
-import lombok.extern.log4j.Log4j2;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -11,15 +10,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
+import lombok.extern.log4j.Log4j2;
 
 @RestControllerAdvice
 @Log4j2
 public class RestResponseEntityExceptionHandler {
-
 	@ExceptionHandler(APIException.class)
 	public ResponseEntity<ErrorApiResponse> handlerGenericException(APIException ex) {
 		return ex.buildErrorResponseEntity();
@@ -44,5 +39,4 @@ public class RestResponseEntityExceptionHandler {
 		});
 		return errors;
 	}
-
 }

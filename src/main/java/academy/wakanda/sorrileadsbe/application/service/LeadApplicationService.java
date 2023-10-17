@@ -1,6 +1,5 @@
 package academy.wakanda.sorrileadsbe.application.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
@@ -16,7 +15,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class LeadApplicationService implements LeadService {
-	@Autowired
+
 	private final LeadRepository leadRepository;
 	private final CommunicationService communicationService;
 
@@ -25,9 +24,9 @@ public class LeadApplicationService implements LeadService {
 		log.info("[start]  LeadApplicationService- createLead");
 		Lead lead = leadRepository.save(new Lead(leadRequest));
 		MessageRequest messageRequest = new MessageRequest(leadRequest);
-		lead.enviaMensagem(communicationService,leadRepository, messageRequest);
+		lead.enviaMensagem(communicationService, leadRepository, messageRequest);
 		log.info("[finish]  LeadApplicationService - createLead");
-		return LeadResponse.builder().idLead(lead.getIdLead()).build();
-	}
+		return new LeadResponse(lead);
 
+	}
 }

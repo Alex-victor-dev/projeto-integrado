@@ -27,7 +27,7 @@ public class CommunicationInfraIntegrator implements CommunicationIntegrator {
 		} catch (FeignException feignException) {
 			int statusCode = feignException.status();
 			String responseBody = feignException.contentUTF8();
-			throw APIException.build(HttpStatus.BAD_REQUEST, "Falha na Integração com a API do ZAPI. Status: "
+			throw APIException.build(HttpStatus.valueOf(statusCode), "Falha na Integração com a API do ZAPI. Status: "
 					+ statusCode + ", Response Body: " + responseBody);
 
 		} catch (Exception e) {
