@@ -21,7 +21,7 @@ public class MessageRequest {
 	private String message;
 
 	public MessageRequest(LeadRequest leadRequest) {
-		this.phone = leadRequest.getRespondentForm().getAnswersJson().getWhatsapp();
+		this.phone = leadRequest.getPhone();
 		this.message = "Olá! Seja bem-vindo à nossa Clínica 🔝\r\n"
 				+ "Estamos animadas para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
 				+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
