@@ -1,5 +1,6 @@
 package academy.wakanda.sorrileadsbe.domain;
 
+import academy.wakanda.sorrileadsbe.application.api.EspecialidadeInteressada;
 import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
 import lombok.*;
 import javax.persistence.*;

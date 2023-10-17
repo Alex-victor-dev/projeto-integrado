@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.domain;
+package academy.wakanda.sorrileadsbe.application.api;
 
 import lombok.*;
 
