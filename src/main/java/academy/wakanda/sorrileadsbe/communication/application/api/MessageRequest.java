@@ -3,7 +3,7 @@ package academy.wakanda.sorrileadsbe.communication.application.api;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

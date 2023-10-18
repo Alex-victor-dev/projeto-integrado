@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.domain;
+package academy.wakanda.sorrileadsbe.lead.domain;
 
 
 import java.util.UUID;
@@ -14,9 +14,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import academy.wakanda.sorrileadsbe.application.api.EspecialidadeInteressada;
-import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
-import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
+import academy.wakanda.sorrileadsbe.lead.application.api.EspecialidadeInteressada;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;

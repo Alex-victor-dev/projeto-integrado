@@ -1,6 +1,6 @@
-package academy.wakanda.sorrileadsbe.application.api;
+package academy.wakanda.sorrileadsbe.lead.application.api;
 
-import academy.wakanda.sorrileadsbe.domain.Lead;
+import academy.wakanda.sorrileadsbe.lead.domain.Lead;
 import lombok.*;
 import java.util.UUID;
 

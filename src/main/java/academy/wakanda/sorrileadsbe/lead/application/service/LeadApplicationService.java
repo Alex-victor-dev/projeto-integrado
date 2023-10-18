@@ -1,13 +1,13 @@
-package academy.wakanda.sorrileadsbe.application.service;
+package academy.wakanda.sorrileadsbe.lead.application.service;
 
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.domain.Lead;
 import org.springframework.stereotype.Service;
 
-import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
-import academy.wakanda.sorrileadsbe.application.api.LeadResponse;
-import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadResponse;
+import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
-import academy.wakanda.sorrileadsbe.domain.Lead;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

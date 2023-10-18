@@ -1,8 +1,9 @@
 package academy.wakanda.sorrileadsbe.domain;
 
-import academy.wakanda.sorrileadsbe.application.api.EspecialidadeInteressada;
-import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.api.EspecialidadeInteressada;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
 import academy.wakanda.sorrileadsbe.application.service.DataHelper;
+import academy.wakanda.sorrileadsbe.lead.domain.Lead;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import academy.wakanda.sorrileadsbe.lead.application.service.LeadApplicationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,10 +16,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
-import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
-import academy.wakanda.sorrileadsbe.application.api.LeadResponse;
-import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
-import academy.wakanda.sorrileadsbe.domain.Lead;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadResponse;
+import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
+import academy.wakanda.sorrileadsbe.lead.domain.Lead;
 import academy.wakanda.sorrileadsbe.handler.APIException;
 
 @ExtendWith(MockitoExtension.class)

@@ -1,6 +1,5 @@
-package academy.wakanda.sorrileadsbe.application.api;
+package academy.wakanda.sorrileadsbe.lead.application.api;
 
-import academy.wakanda.sorrileadsbe.application.api.AnswersJson;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
