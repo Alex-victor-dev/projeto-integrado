@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.domain;
+package academy.wakanda.sorrileadsbe.application.api;
 
 public enum EspecialidadeInteressada {
     APARELHO_FIXO_OU_INVISÍVEL, IMPLANTES_E_PRÓTESES, LIMPEZA_E_REVISAO_GERAL,

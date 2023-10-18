@@ -1,5 +1,6 @@
 package academy.wakanda.sorrileadsbe.domain;
 
+
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -8,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import academy.wakanda.sorrileadsbe.application.api.EspecialidadeInteressada;
 import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
 import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
