@@ -1,6 +1,7 @@
 package academy.wakanda.sorrileadsbe.lead.domain;
 
 
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -60,21 +61,32 @@ public class Lead {
 		this.registrationDate = leadRequest.getRegistrationDate();
 	}
 
-	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository,
-			MessageRequest messageRequest) {
+	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository) {
 		try {
 			log.info("[Inicia] - Lead - enviaMensagem");
-			MessageResponse response = communicationService.sendMessage(messageRequest);
-			if (response != null && response.getZaapId() != null && response.getMessageId() != null
-					&& response.getId() != null) {
-				this.enviouMensagenDeBoasVindas = true;
-			} else {
-				this.enviouMensagenDeBoasVindas = false;
-			}
+			MessageResponse response = communicationService.sendMessage(new MessageRequest(this.phone, MENSAGEM_BOAS_VINDAS));
+			verificaSeEnviouMensagem(response);
 		} catch (Exception e) {
+			log.error("[ERROR] - Lead - enviaMensagem",e);
 			this.enviouMensagenDeBoasVindas = false;
 		}
 		leadRepository.save(this);
 		log.info("[finaliza] - Lead - enviaMensagem. Resultado: {}", this.enviouMensagenDeBoasVindas);
 	}
+
+	private void verificaSeEnviouMensagem(MessageResponse response) {
+		if (enviouMensagem(response)) {
+			this.enviouMensagenDeBoasVindas = true;
+		} else {
+			this.enviouMensagenDeBoasVindas = false;
+		}
+	}
+
+	private Boolean enviouMensagem(MessageResponse response) {
+		return Optional.ofNullable(response).map(MessageResponse::enviouMensagem).orElse(false);
+	}
+
+	private static final String MENSAGEM_BOAS_VINDAS = "Olá! Seja bem-vindo à nossa Clínica 🔝\r\n"
+			+ "Estamos animadas para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
+			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
 }
