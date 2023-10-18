@@ -18,17 +18,18 @@ public class DataHelper {
     public static LeadRequest createSimpleJsonLead() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<LeadRequest> leadRequest;
+        LeadRequest leadRequest;
         try {
             TypeReference<List<LeadRequest>> typeReference = new TypeReference<>() {};
             leadRequest = objectMapper.readValue(
                     DataHelper.class.getResourceAsStream("/mocks/request-sucesso.json"),
-                    typeReference
+                    LeadRequest.class
+
              );
         } catch (IOException e) {
             throw new RuntimeException("Erro ao ler o arquivo JSON", e);
         }
-        return leadRequest.get(0);
+        return leadRequest;
     }
 
     public static AnswersJson createAnswersJsonFromJsonFile() {
