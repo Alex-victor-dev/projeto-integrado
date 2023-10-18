@@ -45,7 +45,7 @@ public class Lead {
 	private EspecialidadeInteressada especialidadeInteressada;
 	private String perguntaEspecificaLead;
 	private String registrationDate;
-	@Column(name = "resultado")
+	@Column(name = "enviouMensagenDeBoasVindas")
 	private boolean enviouMensagenDeBoasVindas;
 
 	public Lead(LeadRequest leadRequest) {
