@@ -13,9 +13,9 @@ public class LeadController implements LeadApi {
     private final LeadService leadService;
 
     @Override
-    public LeadResponse postLead(List<LeadRequest> leadRequest) {
+    public LeadResponse postLead(LeadRequest leadRequest) {
         log.info("[start]  LeadController - postLead");
-        LeadResponse leadCreated = leadService.createLead(leadRequest.get(0));
+        LeadResponse leadCreated = leadService.createLead(leadRequest);
         log.info("[finish]  LeadController - postLead");
         return leadCreated;
     }
