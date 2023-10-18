@@ -9,8 +9,6 @@ import java.util.Optional;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LeadRequest {
 
-	@JsonProperty("form")
-	private FormJson formJson;
 	@JsonProperty("respondent")
 	private RespondentFormJson respondentForm;
 
