@@ -1,9 +1,12 @@
 package academy.wakanda.sorrileadsbe.application.service;
 
-import academy.wakanda.sorrileadsbe.application.api.*;
-import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
-import academy.wakanda.sorrileadsbe.domain.Lead;
-import academy.wakanda.sorrileadsbe.handler.APIException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,10 +14,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
+import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.application.api.LeadResponse;
+import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
+import academy.wakanda.sorrileadsbe.domain.Lead;
+import academy.wakanda.sorrileadsbe.handler.APIException;
 
 @ExtendWith(MockitoExtension.class)
 class LeadApplicationServiceTest {
@@ -38,7 +43,7 @@ class LeadApplicationServiceTest {
 
         // Then
         assertEquals(testLead.getIdLead(), response.getIdLead());
-        verify(leadRepository).save(any(Lead.class));
+        verify(leadRepository, times(2)).save(any(Lead.class));
     }
 
     @Test
