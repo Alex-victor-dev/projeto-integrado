@@ -8,7 +8,7 @@ import lombok.*;
 public class AnswersJson {
     @JsonProperty("Qual seu nome?")
     private String nome;
-    @JsonProperty("Qual seu é o Whatsapp?")
+    @JsonProperty("Qual é o seu Whatsapp?")
     private String whatsapp;
     @JsonProperty("Qual seu e-mail?")
     private String email;
