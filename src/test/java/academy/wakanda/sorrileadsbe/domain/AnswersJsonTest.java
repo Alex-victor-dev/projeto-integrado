@@ -1,6 +1,6 @@
 package academy.wakanda.sorrileadsbe.domain;
 
-import academy.wakanda.sorrileadsbe.application.api.AnswersJson;
+import academy.wakanda.sorrileadsbe.lead.application.api.AnswersJson;
 import academy.wakanda.sorrileadsbe.application.service.DataHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -23,4 +23,8 @@ public class MessageResponse {
 	@JsonProperty("id")
 	private String id;
 
+    public boolean enviouMensagem() {
+		return this.zaapId != null && this.messageId != null
+				&& this.id != null;
+    }
 }

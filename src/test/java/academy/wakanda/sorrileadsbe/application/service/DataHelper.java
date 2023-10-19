@@ -1,8 +1,8 @@
 package academy.wakanda.sorrileadsbe.application.service;
 
-import academy.wakanda.sorrileadsbe.application.api.LeadRequest;
-import academy.wakanda.sorrileadsbe.application.api.AnswersJson;
-import academy.wakanda.sorrileadsbe.domain.Lead;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.api.AnswersJson;
+import academy.wakanda.sorrileadsbe.lead.domain.Lead;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

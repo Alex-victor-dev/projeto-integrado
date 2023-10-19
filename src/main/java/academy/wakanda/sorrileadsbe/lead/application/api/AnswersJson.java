@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.application.api;
+package academy.wakanda.sorrileadsbe.lead.application.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 public class AnswersJson {
     @JsonProperty("Qual seu nome?")
     private String nome;
-    @JsonProperty("Qual seu é o Whatsapp?")
+    @JsonProperty("Qual é o seu Whatsapp?")
     private String whatsapp;
     @JsonProperty("Qual seu e-mail?")
     private String email;

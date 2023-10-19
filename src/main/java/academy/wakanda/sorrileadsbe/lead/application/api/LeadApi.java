@@ -1,4 +1,4 @@
-package academy.wakanda.sorrileadsbe.application.api;
+package academy.wakanda.sorrileadsbe.lead.application.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

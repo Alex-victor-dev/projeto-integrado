@@ -1,7 +1,7 @@
-package academy.wakanda.sorrileadsbe.infra;
+package academy.wakanda.sorrileadsbe.lead.infra;
 
-import academy.wakanda.sorrileadsbe.application.repository.LeadRepository;
-import academy.wakanda.sorrileadsbe.domain.Lead;
+import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
+import academy.wakanda.sorrileadsbe.lead.domain.Lead;
 import academy.wakanda.sorrileadsbe.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
