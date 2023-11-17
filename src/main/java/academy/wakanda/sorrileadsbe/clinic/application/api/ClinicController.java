@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Log4j2
 @RequiredArgsConstructor
@@ -17,5 +19,12 @@ public class ClinicController implements ClinicAPI {
         ClinicResponse clinicCreated = clinicService.createClinic(clinicRequest);
         log.info("[finish] ClinicController - postClinic ");
         return clinicCreated;
+    }
+
+    @Override
+    public List<ClinicListResponse> getAllClinics() {
+        log.info("[start] ClinicController - getAllClinics ");
+        log.info("[finish] ClinicController - getAllClinics ");
+        return null;
     }
 }
