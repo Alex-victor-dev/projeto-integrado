@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -29,7 +30,9 @@ public class Clinic {
     @Email
     @Column(unique = true)
     private String email;
-    @NotBlank
+    @NotBlank(message = "A URL do ZAPI é obrigatória.")
+    @Pattern(regexp = "^https://api\\.z-api\\.io/instances/[a-zA-Z0-9]{32}/token/[a-zA-Z0-9]{32}/send-text$",
+            message = "URL do ZAPI inválida.")
     private String urlZapi;
     private LocalDateTime dataCadastro;
 
