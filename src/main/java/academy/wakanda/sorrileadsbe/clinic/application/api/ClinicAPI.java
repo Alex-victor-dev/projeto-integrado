@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/clinic")
@@ -17,5 +18,9 @@ public interface ClinicAPI {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<ClinicListResponse> getAllClinics();
+
+    @GetMapping(value = "/{idClinic}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ClinicDetailedResponse getClinicPerId(@PathVariable UUID idClinic);
 }
 

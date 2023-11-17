@@ -1,5 +1,6 @@
 package academy.wakanda.sorrileadsbe.clinic.application.service;
 
+import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicDetailedResponse;
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicListResponse;
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicResponse;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Log4j2
@@ -30,5 +32,13 @@ public class ClinicApplicationService implements ClinicService {
         List<Clinic> clinics = clinicRepository.buscaAllClinics();
         log.info("[finish] ClinicApplicationService - buscaAllClinics");
         return ClinicListResponse.converte(clinics);
+    }
+
+    @Override
+    public ClinicDetailedResponse buscaClinicPerId(UUID idClinic) {
+    log.info("[start] ClinicApplicationService - buscaClinicPerId");
+    Clinic clinic = clinicRepository.buscaClinicPerId(idClinic);
+    log.info("[finish] ClinicApplicationService - buscaClinicPerId");
+    return new ClinicDetailedResponse(clinic);
     }
 }
