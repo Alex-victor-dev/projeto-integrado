@@ -1,6 +1,6 @@
 package academy.wakanda.sorrileadsbe.clinic.domain;
 
-import lombok.AccessLevel;
+import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @ToString
 @Entity
 @Table(name = "clinic")
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class Clinic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,4 +32,14 @@ public class Clinic {
     @NotBlank
     private String urlZapi;
     private LocalDateTime dataCadastro;
+
+
+    public Clinic(ClinicRequest clinicRequest) {
+        this.nameClinic = clinicRequest.getNameClinic();
+        this.phone = clinicRequest.getPhone();
+        this.email = clinicRequest.getEmail();
+        this.urlZapi = clinicRequest.getUrlZapi();
+        this.dataCadastro = LocalDateTime.now();
+    }
+
 }
