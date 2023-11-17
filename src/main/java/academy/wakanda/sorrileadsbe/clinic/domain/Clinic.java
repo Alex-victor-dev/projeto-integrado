@@ -31,7 +31,7 @@ public class Clinic {
     @Column(unique = true)
     private String email;
     @NotBlank(message = "A URL do ZAPI é obrigatória.")
-    @Pattern(regexp = "^https://api\\.z-api\\.io/instances/[a-zA-Z0-9]{32}/token/[a-zA-Z0-9]{32}/send-text$",
+    @Pattern(regexp = "(?i)^https://api\\.z-api\\.io/instances/[A-Z0-9]{32}/token/[A-Z0-9]{24}/send-text$",
             message = "URL do ZAPI inválida.")
     private String urlZapi;
     private LocalDateTime dataCadastro;

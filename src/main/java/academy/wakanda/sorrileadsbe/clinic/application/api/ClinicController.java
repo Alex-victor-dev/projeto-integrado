@@ -24,7 +24,8 @@ public class ClinicController implements ClinicAPI {
     @Override
     public List<ClinicListResponse> getAllClinics() {
         log.info("[start] ClinicController - getAllClinics ");
+        List<ClinicListResponse> clinics = clinicService.buscaAllClinics();
         log.info("[finish] ClinicController - getAllClinics ");
-        return null;
+        return clinics;
     }
 }
