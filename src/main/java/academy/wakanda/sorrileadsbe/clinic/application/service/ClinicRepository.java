@@ -11,4 +11,6 @@ public interface ClinicRepository {
     List<Clinic> buscaAllClinics();
 
     Clinic buscaClinicPerId(UUID idClinic);
+
+    void deleteClinic(Clinic clinic);
 }

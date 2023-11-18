@@ -41,4 +41,12 @@ public class ClinicInfraRepository implements ClinicRepository {
         log.info("[finish]  ClinicInfraRepository - buscaClinicPerId");
         return clinic;
     }
+
+    @Override
+    public void deleteClinic(Clinic clinic) {
+        log.info("[start]  ClinicInfraRepository - deleteClinic");
+        clinicSpringDataJPARepository.delete(clinic);
+        log.info("[finish]  ClinicInfraRepository - deleteClinic");
+
+    }
 }

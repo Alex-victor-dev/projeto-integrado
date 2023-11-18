@@ -14,4 +14,6 @@ public interface ClinicService {
     List<ClinicListResponse> buscaAllClinics();
 
     ClinicDetailedResponse buscaClinicPerId(UUID idClinic);
+
+    void deleteClinicPerId(UUID idClinic);
 }

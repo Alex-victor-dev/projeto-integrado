@@ -37,4 +37,13 @@ public class ClinicController implements ClinicAPI {
         log.info("[finish] ClinicController - getClinicPerId");
         return clinicDetailed;
     }
+
+    @Override
+    public void deleteClinicPerId(UUID idClinic) {
+        log.info("[start] ClinicController - deleteClinicPerId");
+        log.info("[idClinic] {}", idClinic);
+        clinicService.deleteClinicPerId(idClinic);
+        log.info("[finish] ClinicController - deleteClinicPerId");
+
+    }
 }

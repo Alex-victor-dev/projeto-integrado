@@ -41,4 +41,13 @@ public class ClinicApplicationService implements ClinicService {
     log.info("[finish] ClinicApplicationService - buscaClinicPerId");
     return new ClinicDetailedResponse(clinic);
     }
+
+    @Override
+    public void deleteClinicPerId(UUID idClinic) {
+        log.info("[start] ClinicApplicationService - deleteClinicPerId");
+        Clinic clinic = clinicRepository.buscaClinicPerId(idClinic);
+        clinicRepository.deleteClinic(clinic);
+        log.info("[start] ClinicApplicationService - deleteClinicPerId");
+
+    }
 }
