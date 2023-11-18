@@ -1,14 +1,16 @@
 package academy.wakanda.sorrileadsbe.clinic.application.api;
 
 import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
-import lombok.Value;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Value
+@Getter
+@ToString
 public class ClinicListResponse {
     private UUID idClinic;
     private String nameClinic;

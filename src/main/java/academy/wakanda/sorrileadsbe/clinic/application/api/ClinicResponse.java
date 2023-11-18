@@ -14,6 +14,5 @@ public class ClinicResponse {
 
     public ClinicResponse(Clinic clinic){
         this.idClinic = clinic.getIdClinic();
-
     }
 }
