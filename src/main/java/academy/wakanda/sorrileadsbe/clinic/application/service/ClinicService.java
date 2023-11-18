@@ -1,9 +1,6 @@
 package academy.wakanda.sorrileadsbe.clinic.application.service;
 
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicDetailedResponse;
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicListResponse;
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicResponse;
+import academy.wakanda.sorrileadsbe.clinic.application.api.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,4 +13,6 @@ public interface ClinicService {
     ClinicDetailedResponse buscaClinicPerId(UUID idClinic);
 
     void deleteClinicPerId(UUID idClinic);
+
+    void patchUpdateClinic(UUID idClinic, ClinicUpdateRequest clinicUpdateRequest);
 }

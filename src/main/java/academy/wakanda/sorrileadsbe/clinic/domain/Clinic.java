@@ -1,6 +1,7 @@
 package academy.wakanda.sorrileadsbe.clinic.domain;
 
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
+import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicUpdateRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -45,4 +46,10 @@ public class Clinic {
         this.dataCadastro = LocalDateTime.now();
     }
 
+    public void update(ClinicUpdateRequest clinicUpdateRequest) {
+        this.nameClinic = clinicUpdateRequest.getNameClinic();
+        this.phone = clinicUpdateRequest.getPhone();
+        this.email = clinicUpdateRequest.getEmail();
+        this.urlZapi = clinicUpdateRequest.getUrlZapi();
+    }
 }

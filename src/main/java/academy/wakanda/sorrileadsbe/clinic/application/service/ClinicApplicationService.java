@@ -1,9 +1,6 @@
 package academy.wakanda.sorrileadsbe.clinic.application.service;
 
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicDetailedResponse;
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicListResponse;
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
-import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicResponse;
+import academy.wakanda.sorrileadsbe.clinic.application.api.*;
 import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -49,5 +46,14 @@ public class ClinicApplicationService implements ClinicService {
         clinicRepository.deleteClinic(clinic);
         log.info("[start] ClinicApplicationService - deleteClinicPerId");
 
+    }
+
+    @Override
+    public void patchUpdateClinic(UUID idClinic, ClinicUpdateRequest clinicUpdateRequest) {
+        log.info("[start] ClinicApplicationService - patchUpdateClinic");
+        Clinic clinic = clinicRepository.buscaClinicPerId(idClinic);
+        clinic.update(clinicUpdateRequest);
+        clinicRepository.save(clinic);
+        log.info("[finish] ClinicApplicationService - patchUpdateClinic");
     }
 }

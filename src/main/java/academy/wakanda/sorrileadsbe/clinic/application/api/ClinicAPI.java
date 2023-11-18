@@ -26,5 +26,11 @@ public interface ClinicAPI {
     @DeleteMapping(value = "/{idClinic}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deleteClinicPerId(@PathVariable UUID idClinic);
+
+    @PatchMapping(value = "/{idClinic}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void patchUpdateClinic(@PathVariable UUID idClinic,
+                            @Valid @RequestBody ClinicUpdateRequest clinicUpdateRequest);
+
 }
 
