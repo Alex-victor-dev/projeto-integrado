@@ -20,7 +20,7 @@ public class AnswersJsonTest {
         assertEquals("Vastiane", answersJson.getNome());
         assertEquals("55 73995791888", answersJson.getWhatsapp());
         assertEquals("vastiane@gmail.com", answersJson.getEmail());
-        assertEquals("BOTOX", answersJson.getEspecialidade());
+        assertEquals("CLAREAMENTO_DENTAL", answersJson.getEspecialidade());
         assertEquals("sim", answersJson.getPerguntaEspecifica());
     }
 }

@@ -25,7 +25,7 @@ class LeadTest {
         assertEquals("Vastiane", lead.getName());
         assertEquals("55 73995791888", lead.getPhone());
         assertEquals("vastiane@gmail.com", lead.getEmail());
-        assertEquals(EspecialidadeInteressada.BOTOX, lead.getEspecialidadeInteressada());
+        assertEquals(EspecialidadeInteressada.CLAREAMENTO_DENTAL, lead.getEspecialidadeInteressada());
         assertEquals("sim", lead.getPerguntaEspecificaLead());
         assertEquals("2023-09-27 13:00:00", lead.getRegistrationDate());
     }
