@@ -17,9 +17,9 @@ public class AnswersJsonTest {
         AnswersJson answersJson = DataHelper.createAnswersJsonFromJsonFile();
 
         // Realize as asserções para verificar se os valores foram lidos corretamente
-        assertEquals("Vastiane", answersJson.getNome());
-        assertEquals("55 73995791888", answersJson.getWhatsapp());
-        assertEquals("vastiane@gmail.com", answersJson.getEmail());
+        assertEquals("teste1", answersJson.getNome());
+        assertEquals("55 71982099941", answersJson.getWhatsapp());
+        assertEquals("teste@gmail.com", answersJson.getEmail());
         assertEquals("CLAREAMENTO_DENTAL", answersJson.getEspecialidade());
         assertEquals("sim", answersJson.getPerguntaEspecifica());
     }
