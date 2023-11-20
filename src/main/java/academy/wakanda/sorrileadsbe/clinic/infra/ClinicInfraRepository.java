@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -25,28 +24,11 @@ public class ClinicInfraRepository implements ClinicRepository {
     }
 
     @Override
-    public List<Clinic> buscaAllClinics() {
-        log.info("[start]  ClinicInfraRepository - buscaAllClinics");
-        List<Clinic> allClinics = clinicSpringDataJPARepository.findAll();
-        log.info("[finish]  ClinicInfraRepository - buscaAllClinics");
-        return allClinics;
-    }
-
-    @Override
     public Clinic buscaClinicPerId(UUID idClinic) {
-        log.info("[start]  ClinicInfraRepository - buscaClinicPerId");
-        Clinic clinic = clinicSpringDataJPARepository.findById(idClinic)
-                        .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND,
-                                "Clínica não encontrada!"));
-        log.info("[finish]  ClinicInfraRepository - buscaClinicPerId");
+        log.info("[start] ClinicInfraRepository - buscaClinicPerId");
+        Clinic clinic  = clinicSpringDataJPARepository.findById(idClinic)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND,"Clínica não encontrada!"));
+        log.info("[finish] ClinicInfraRepository - buscaClinicPerId");
         return clinic;
-    }
-
-    @Override
-    public void deleteClinic(Clinic clinic) {
-        log.info("[start]  ClinicInfraRepository - deleteClinic");
-        clinicSpringDataJPARepository.delete(clinic);
-        log.info("[finish]  ClinicInfraRepository - deleteClinic");
-
     }
 }
