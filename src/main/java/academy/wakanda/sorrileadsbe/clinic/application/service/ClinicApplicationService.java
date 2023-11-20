@@ -2,8 +2,11 @@ package academy.wakanda.sorrileadsbe.clinic.application.service;
 
 import academy.wakanda.sorrileadsbe.clinic.application.api.*;
 import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
+import academy.wakanda.sorrileadsbe.handler.APIException;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,15 +15,19 @@ import java.util.UUID;
 @Service
 @Log4j2
 @RequiredArgsConstructor
+@Builder
 public class ClinicApplicationService implements ClinicService {
     private final ClinicRepository clinicRepository;
 
     @Override
     public ClinicResponse createClinic(ClinicRequest clinicRequest) {
         log.info("[start] ClinicApplicationService -  createClinic");
-        Clinic clinic= clinicRepository.save(new Clinic(clinicRequest));
-        log.info("[finish] ClinicApplicationService -  createClinic");
-        return new ClinicResponse(clinic);
+        Clinic clinic = new Clinic(clinicRequest);
+        clinic.validateZapiUrl()
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "URL do ZAPI inválida."));
+        Clinic savedClinic = clinicRepository.save(clinic);
+        log.info("[finish] ClinicApplicationService - createClinic");
+        return new ClinicResponse(savedClinic);
     }
 
     @Override

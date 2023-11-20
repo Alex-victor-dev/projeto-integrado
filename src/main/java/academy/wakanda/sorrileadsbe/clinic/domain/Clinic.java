@@ -11,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -51,5 +52,13 @@ public class Clinic {
         this.phone = clinicUpdateRequest.getPhone();
         this.email = clinicUpdateRequest.getEmail();
         this.urlZapi = clinicUpdateRequest.getUrlZapi();
+    }
+
+    public Optional<String> validateZapiUrl() {
+        if (urlZapi.matches("(?i)^https://api\\.z-api\\.io/instances/[A-Z0-9]{32}/token/[A-Z0-9]{24}/send-text$")) {
+            return Optional.of(urlZapi);
+        } else {
+            return Optional.empty();
+        }
     }
 }
