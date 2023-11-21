@@ -1,6 +1,7 @@
 package academy.wakanda.sorrileadsbe.lead.application.api;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dashboard")
 public interface DashboardAPI {
 
-	@GetMapping("/{urlClinica}/leads")
+	@GetMapping("/{idClinic}/leads")
 	@ResponseStatus(code = HttpStatus.OK)
-	List<LeadListResponse> getLeadsByClinicUrl(@PathVariable("urlClinica") String urlClinica);
+	List<LeadListResponse> getLeadsByClinicUrl(@PathVariable("idClinic") UUID idClinic);
 }
