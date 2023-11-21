@@ -37,7 +37,7 @@ public class Lead {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idLead;
-	private UUID IdClinic;
+	private UUID idClinic;
 	@NotBlank
 	private String name;
 	@NotBlank
