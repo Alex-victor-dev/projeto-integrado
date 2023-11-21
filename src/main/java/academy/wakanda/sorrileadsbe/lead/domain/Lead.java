@@ -1,6 +1,5 @@
 package academy.wakanda.sorrileadsbe.lead.domain;
 
-
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,6 +37,7 @@ public class Lead {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idLead;
+	private UUID IdClinic;
 	@NotBlank
 	private String name;
 	@NotBlank
@@ -64,10 +64,11 @@ public class Lead {
 	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository) {
 		try {
 			log.info("[Inicia] - Lead - enviaMensagem");
-			MessageResponse response = communicationService.sendMessage(new MessageRequest(this.phone, MENSAGEM_BOAS_VINDAS));
+			MessageResponse response = communicationService
+					.sendMessage(new MessageRequest(this.phone, MENSAGEM_BOAS_VINDAS));
 			verificaSeEnviouMensagem(response);
 		} catch (Exception e) {
-			log.error("[ERROR] - Lead - enviaMensagem",e);
+			log.error("[ERROR] - Lead - enviaMensagem", e);
 			this.enviouMensagenDeBoasVindas = false;
 		}
 		leadRepository.save(this);
