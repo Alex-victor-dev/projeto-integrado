@@ -33,6 +33,7 @@ public class Clinic {
     @Email
     @Column(unique = true)
     private String email;
+    private String webhookUrl;
     @NotBlank
     private String keyZapi;
     @NotBlank

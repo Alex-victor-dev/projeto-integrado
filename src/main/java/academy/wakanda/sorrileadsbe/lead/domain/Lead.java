@@ -1,31 +1,24 @@
 package academy.wakanda.sorrileadsbe.lead.domain;
 
 
-import java.util.Optional;
-import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import academy.wakanda.sorrileadsbe.lead.application.api.EspecialidadeInteressada;
-import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
-import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
+import academy.wakanda.sorrileadsbe.lead.application.api.EspecialidadeInteressada;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.Optional;
+import java.util.UUID;
 
 @Log4j2
 @Getter
@@ -51,6 +44,7 @@ public class Lead {
 	private String registrationDate;
 	@Column(name = "enviouMensagenDeBoasVindas")
 	private boolean enviouMensagenDeBoasVindas;
+
 
 	public Lead(LeadRequest leadRequest) {
 		this.name = leadRequest.getNome();
