@@ -2,9 +2,12 @@ package academy.wakanda.sorrileadsbe.clinic.domain;
 
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicUpdateRequest;
+import academy.wakanda.sorrileadsbe.clinic.application.service.ClinicRepository;
+import academy.wakanda.sorrileadsbe.handler.APIException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -52,5 +55,11 @@ public class Clinic {
         this.email = clinicUpdateRequest.getEmail();
         this.keyZapi = clinicUpdateRequest.getKeyZapi();
         this.tokenZapi = clinicUpdateRequest.getTokenZapi();
+    }
+    public static void validateEmail(String email, ClinicRepository clinicRepository) {
+        clinicRepository.findByEmail(email)
+                .ifPresent(c -> {
+                    throw APIException.build(HttpStatus.BAD_REQUEST, "E-mail já cadastrado no sistema.");
+                });
     }
 }

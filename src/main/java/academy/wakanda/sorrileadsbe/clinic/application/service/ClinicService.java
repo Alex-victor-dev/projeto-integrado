@@ -7,6 +7,6 @@ import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicUpdateRequest;
 import java.util.UUID;
 
 public interface ClinicService {
-    ClinicResponse createClinic(ClinicRequest clinicRequest, WebhookService webhookService);
+    ClinicResponse createClinic(ClinicRequest clinicRequest);
     void patchUpdateClinic(UUID idClinic, ClinicUpdateRequest clinicUpdateRequest);
 }
