@@ -18,6 +18,8 @@ public class ClinicRequest {
     @Column(unique = true)
     private String email;
     @NotBlank
-    private String urlZapi;
+    private String keyZapi;
+    @NotBlank
+    private String tokenZapi;
 
 }

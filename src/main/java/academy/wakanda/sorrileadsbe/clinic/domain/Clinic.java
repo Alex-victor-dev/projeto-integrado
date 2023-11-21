@@ -9,9 +9,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 
@@ -32,10 +30,10 @@ public class Clinic {
     @Email
     @Column(unique = true)
     private String email;
-    @NotBlank(message = "A URL do ZAPI é obrigatória.")
-    @Pattern(regexp = "(?i)^https://api\\.z-api\\.io/instances/[A-Z0-9]{32}/token/[A-Z0-9]{24}/send-text$",
-            message = "URL do ZAPI inválida.")
-    private String urlZapi;
+    @NotBlank
+    private String keyZapi;
+    @NotBlank
+    private String tokenZapi;
     private LocalDateTime dataCadastro;
 
 
@@ -43,7 +41,8 @@ public class Clinic {
         this.nameClinic = clinicRequest.getNameClinic();
         this.phone = clinicRequest.getPhone();
         this.email = clinicRequest.getEmail();
-        this.urlZapi = clinicRequest.getUrlZapi();
+        this.keyZapi = clinicRequest.getKeyZapi();
+        this.tokenZapi = clinicRequest.getTokenZapi();
         this.dataCadastro = LocalDateTime.now();
     }
 
@@ -51,14 +50,7 @@ public class Clinic {
         this.nameClinic = clinicUpdateRequest.getNameClinic();
         this.phone = clinicUpdateRequest.getPhone();
         this.email = clinicUpdateRequest.getEmail();
-        this.urlZapi = clinicUpdateRequest.getUrlZapi();
-    }
-
-    public Optional<String> validateZapiUrl() {
-        if (urlZapi.matches("(?i)^https://api\\.z-api\\.io/instances/[A-Z0-9]{32}/token/[A-Z0-9]{24}/send-text$")) {
-            return Optional.of(urlZapi);
-        } else {
-            return Optional.empty();
-        }
+        this.keyZapi = clinicUpdateRequest.getKeyZapi();
+        this.tokenZapi = clinicUpdateRequest.getTokenZapi();
     }
 }

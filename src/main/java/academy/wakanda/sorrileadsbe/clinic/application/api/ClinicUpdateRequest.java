@@ -9,5 +9,6 @@ public class ClinicUpdateRequest {
     private String nameClinic;
     private String phone;
     private String email;
-    private String urlZapi;
+    private String keyZapi;
+    private String tokenZapi;
 }
