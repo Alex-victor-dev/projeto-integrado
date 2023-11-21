@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.dao.DataIntegrityViolationException;
 
 @Repository
@@ -26,4 +30,12 @@ public class LeadInfraRepository implements LeadRepository {
         log.info("[finish] LeadInfraRepository - save");
         return lead;
     }
+
+	@Override
+	public List<Lead> getLeadsByClinicUrl(UUID idClinic) {
+		log.info("[start] LeadInfraRepository - getLeadsByClinicUrl");
+		List<Lead> leads = leadSpringDataJPARepository.findAllByIdClinic(idClinic);
+		log.info("[finish] LeadInfraRepository - getLeadsByClinicUrl");
+		return leads;
+	}
 }
