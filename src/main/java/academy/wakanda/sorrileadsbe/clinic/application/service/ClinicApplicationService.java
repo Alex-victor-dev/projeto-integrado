@@ -21,10 +21,9 @@ public class ClinicApplicationService implements ClinicService {
     @Override
     public ClinicResponse createClinic(ClinicRequest clinicRequest) {
         log.info("[start] ClinicApplicationService -  createClinic");
-        Clinic clinic = new Clinic(clinicRequest);
-        Clinic savedClinic = clinicRepository.save(clinic);
+        Clinic clinic = clinicRepository.save(new Clinic(clinicRequest));
         log.info("[finish] ClinicApplicationService - createClinic");
-        return new ClinicResponse(savedClinic);
+        return new ClinicResponse(clinic);
     }
 
     @Override
