@@ -37,7 +37,9 @@ public class LeadApplicationService implements LeadService {
 
 	@Override
 	public List<LeadListResponse> getLeadsByClinicUrl(UUID idClinic) {
+		log.info("[start]  LeadApplicationService- getLeadsByClinicUrl");
 		clinicRepository.buscaClinicPerId(idClinic);
+		log.info("[idClinic] {}", idClinic);
 		List<Lead> leadsList = leadRepository.getLeadsByClinicUrl(idClinic);
 		return LeadListResponse.converte(leadsList);
 	}
