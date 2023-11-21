@@ -23,7 +23,7 @@ public class ClinicApplicationService implements ClinicService {
         log.info("[start] ClinicApplicationService -  createClinic");
         Clinic clinic = clinicRepository.save(new Clinic(clinicRequest));
         log.info("[finish] ClinicApplicationService - createClinic");
-        return new ClinicResponse(clinic);
+        return new ClinicResponse(clinic, webHookUrl);
     }
 
     @Override

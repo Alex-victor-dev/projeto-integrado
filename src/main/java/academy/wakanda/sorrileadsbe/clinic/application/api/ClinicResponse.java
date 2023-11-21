@@ -11,8 +11,10 @@ import java.util.UUID;
 public class ClinicResponse {
 
     private UUID idClinic;
+    private String webhookUrl;
 
-    public ClinicResponse(Clinic clinic){
+    public ClinicResponse(Clinic clinic, String webhookUrl){
         this.idClinic = clinic.getIdClinic();
+        this.webhookUrl = webhookUrl;
     }
 }
