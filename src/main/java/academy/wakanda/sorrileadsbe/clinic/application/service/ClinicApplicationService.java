@@ -17,13 +17,15 @@ import java.util.UUID;
 @Builder
 public class ClinicApplicationService implements ClinicService {
     private final ClinicRepository clinicRepository;
+    private final WebhookService webhookService;
 
     @Override
     public ClinicResponse createClinic(ClinicRequest clinicRequest) {
         log.info("[start] ClinicApplicationService -  createClinic");
         Clinic clinic = clinicRepository.save(new Clinic(clinicRequest));
+        String webhookUrl = webhookService.generateWebhookUrl(clinic.getIdClinic());
         log.info("[finish] ClinicApplicationService - createClinic");
-        return new ClinicResponse(clinic, webHookUrl);
+        return new ClinicResponse(clinic, webhookUrl);
     }
 
     @Override
