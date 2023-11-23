@@ -1,12 +1,11 @@
 package academy.wakanda.sorrileadsbe.handler;
 
-import java.util.Optional;
-
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
+import java.util.Optional;
 
 @Getter
 @Log4j2
@@ -14,7 +13,7 @@ public class APIException extends RuntimeException {
 	private HttpStatus statusException;
 	private ErrorApiResponse bodyException;
 
-	public APIException(HttpStatus statusException, String message, Exception e) {
+	private APIException(HttpStatus statusException, String message, Exception e) {
 		super(message, e);
 		this.statusException = statusException;
 		this.bodyException = ErrorApiResponse.builder()

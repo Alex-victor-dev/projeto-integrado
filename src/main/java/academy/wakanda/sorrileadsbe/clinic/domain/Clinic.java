@@ -68,7 +68,6 @@ public class Clinic {
     }
 
     private String associateWebhook(WebhookService webhookService) {
-        // Geração do URL do webhook durante a criação da clínica
         return webhookService.generateWebhookUrl(this.getIdClinic());
     }
 
