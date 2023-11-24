@@ -3,7 +3,6 @@ package academy.wakanda.sorrileadsbe.clinic.domain;
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicRequest;
 import academy.wakanda.sorrileadsbe.clinic.application.api.ClinicUpdateRequest;
 import academy.wakanda.sorrileadsbe.clinic.application.service.ClinicRepository;
-import academy.wakanda.sorrileadsbe.clinic.application.service.WebhookService;
 import academy.wakanda.sorrileadsbe.handler.APIException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -66,11 +65,6 @@ public class Clinic {
                     throw APIException.build(HttpStatus.BAD_REQUEST, "E-mail já cadastrado no sistema.");
                 });
     }
-
-    private String associateWebhook(WebhookService webhookService) {
-        return webhookService.generateWebhookUrl(this.getIdClinic());
-    }
-
     public void relacionaWebhookUrl(ClinicRepository clinicRepository, String webhookUrl) {
         this.webhookUrl = webhookUrl;
         clinicRepository.save(this);

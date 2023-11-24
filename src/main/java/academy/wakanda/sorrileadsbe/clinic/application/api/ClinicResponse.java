@@ -11,10 +11,7 @@ import java.util.UUID;
 public class ClinicResponse {
 
     private UUID idClinic;
-
-
     public ClinicResponse(Clinic clinic){
         this.idClinic = clinic.getIdClinic();
-
     }
 }
