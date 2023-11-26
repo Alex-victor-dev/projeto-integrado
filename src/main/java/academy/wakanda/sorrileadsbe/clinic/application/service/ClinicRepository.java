@@ -12,5 +12,5 @@ public interface ClinicRepository {
 
     Optional<Clinic> findByEmail(String email);
 
-    Optional<Clinic> findById(UUID clinicId);
+
 }

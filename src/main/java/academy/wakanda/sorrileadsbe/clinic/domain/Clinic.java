@@ -70,8 +70,5 @@ public class Clinic {
         clinicRepository.save(this);
     }
 
-    public void setId(UUID uuid) {
-
-    }
 }
 

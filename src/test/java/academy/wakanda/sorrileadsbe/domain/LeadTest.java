@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -19,7 +22,8 @@ class LeadTest {
         // Given
         LeadRequest request = DataHelper.createSimpleJsonLead();
         // When
-        Lead lead = new Lead(request);
+        UUID idClinic = UUID.randomUUID();
+        Lead lead = new Lead(request, idClinic);
 
         // Then
         assertEquals("teste1", lead.getName());

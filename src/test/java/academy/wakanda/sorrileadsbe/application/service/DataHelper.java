@@ -10,25 +10,20 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class DataHelper {
 
     public static Lead getTestLead() {
         LeadRequest leadRequest = createSimpleJsonLead();
-        Lead lead = new Lead(leadRequest);
-        Clinic clinic = createTestClinic(); // Cria uma clínica para o teste
-        lead.associateWithClinic(clinic); // Associa a clínica ao lead
-        return lead;
+        UUID idClinic = UUID.randomUUID();
+        return new Lead(leadRequest, idClinic);
     }
 
     public static Clinic createTestClinic() {
         // Crie um ClinicRequest com dados de teste
-        ClinicRequest clinicRequest = new ClinicRequest();
-        clinicRequest.setNameClinic("Test Clinic");
-        clinicRequest.setPhone("123456789");
-        clinicRequest.setEmail("test@example.com");
-        clinicRequest.setKeyZapi("keyZapi");
-        clinicRequest.setTokenZapi("tokenZapi");
+        ClinicRequest clinicRequest = new ClinicRequest("Teste","123456789",
+                "test@example.com", "keyapi", "token");
 
         // Use o ClinicRequest para criar uma nova clínica
         return new Clinic(clinicRequest);

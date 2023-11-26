@@ -18,7 +18,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,12 +42,10 @@ class LeadApplicationServiceTest {
         // Given
         UUID idClinic = UUID.randomUUID();
         Clinic clinic = DataHelper.createTestClinic(); // Não precisa mais do setIdClinic
-        when(clinicRepository.findById(idClinic)).thenReturn(Optional.of(clinic));
+        when(clinicRepository.buscaClinicPerId(idClinic)).thenReturn(clinic);
 
         LeadRequest leadRequest = DataHelper.createSimpleJsonLead();
-        Lead testLead = new Lead(leadRequest);
-        testLead.associateWithClinic(clinic); // Associe a clínica ao lead
-
+        Lead testLead = new Lead(leadRequest, idClinic);
         when(leadRepository.save(any(Lead.class))).thenReturn(testLead);
 
         // Mock do CommunicationService para evitar a segunda chamada de save dentro de enviaMensagem
@@ -73,14 +70,14 @@ class LeadApplicationServiceTest {
         UUID idClinic = UUID.randomUUID();
         LeadRequest leadRequest = DataHelper.createSimpleJsonLead();
 
-        // Mock the behavior for clinicRepository to simulate clinic not found
-        when(clinicRepository.findById(idClinic)).thenReturn(Optional.empty());
+        // Mock the behavior for clinicRepository to throw an exception when clinic is not found
+        when(clinicRepository.buscaClinicPerId(idClinic))
+                .thenThrow(APIException.build(HttpStatus.NOT_FOUND, "Clínica não encontrada!"));
 
-        // When
+        // When & Then
         APIException e = assertThrows(APIException.class, () -> leadApplicationService.createLead(leadRequest, idClinic));
 
-        // Then
         assertEquals(HttpStatus.NOT_FOUND, e.getStatusException());
-        assertEquals("Clinica não encontrada!", e.getMessage());
+        assertEquals("Clínica não encontrada!", e.getMessage());
     }
 }
