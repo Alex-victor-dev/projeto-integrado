@@ -1,14 +1,15 @@
 package academy.wakanda.sorrileadsbe.clinic.application.api;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
+@NoArgsConstructor
 public class ClinicRequest {
     @NotBlank
     private String nameClinic;

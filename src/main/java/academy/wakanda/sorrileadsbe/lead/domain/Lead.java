@@ -1,6 +1,7 @@
 package academy.wakanda.sorrileadsbe.lead.domain;
 
 
+import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
@@ -31,6 +32,9 @@ public class Lead {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idLead;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idClinic")
+	private Clinic clinic;
 	@NotBlank
 	private String name;
 	@NotBlank
@@ -54,6 +58,7 @@ public class Lead {
 		this.perguntaEspecificaLead = leadRequest.getPerguntaEspecificaLead();
 		this.registrationDate = leadRequest.getRegistrationDate();
 	}
+
 
 	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository) {
 		try {
@@ -83,4 +88,9 @@ public class Lead {
 	private static final String MENSAGEM_BOAS_VINDAS = "Olá! Seja bem-vindo à nossa Clínica 🔝\r\n"
 			+ "Estamos animadas para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
 			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
+
+	public void associateWithClinic(Clinic clinic) {
+		this.clinic = clinic;
 }
+}
+

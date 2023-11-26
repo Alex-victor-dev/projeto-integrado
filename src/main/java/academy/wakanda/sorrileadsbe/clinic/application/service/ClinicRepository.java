@@ -11,4 +11,6 @@ public interface ClinicRepository {
     Clinic buscaClinicPerId(UUID idClinic);
 
     Optional<Clinic> findByEmail(String email);
+
+    Optional<Clinic> findById(UUID clinicId);
 }

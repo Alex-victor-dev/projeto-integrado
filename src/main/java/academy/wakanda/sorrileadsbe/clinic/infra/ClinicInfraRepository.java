@@ -40,4 +40,11 @@ public class ClinicInfraRepository implements ClinicRepository {
         log.info("[finish] ClinicInfraRepository - findByEmail");
         return clinic;
     }
+
+    @Override
+    public Optional<Clinic> findById(UUID idClinic) {
+        var clinic = clinicSpringDataJPARepository.findById(idClinic)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Clinica não encontrada para o Id:  = " + idClinic));
+        return Optional.ofNullable(clinic);
+    }
 }

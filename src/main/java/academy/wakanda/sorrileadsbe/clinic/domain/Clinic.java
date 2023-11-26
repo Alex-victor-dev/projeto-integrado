@@ -69,5 +69,9 @@ public class Clinic {
         this.webhookUrl = webhookUrl;
         clinicRepository.save(this);
     }
+
+    public void setId(UUID uuid) {
+
+    }
 }
 
