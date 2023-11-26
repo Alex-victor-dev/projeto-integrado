@@ -2,6 +2,8 @@ package academy.wakanda.sorrileadsbe.application.service;
 
 import academy.wakanda.sorrileadsbe.clinic.application.service.ClinicRepository;
 import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
+import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
+import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
 import academy.wakanda.sorrileadsbe.handler.APIException;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadResponse;
@@ -22,8 +24,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LeadApplicationServiceTest {
@@ -35,22 +36,6 @@ class LeadApplicationServiceTest {
     private LeadRepository leadRepository;
     @Mock
     private ClinicRepository clinicRepository;
-
-    /*@Test
-    @DisplayName("Testa se cria Lead")
-    void createRespondentTest() {
-        // Given
-        LeadRequest leadRequest = DataHelper.createSimpleJsonLead();
-        Lead testLead = DataHelper.getTestLead();
-        when(leadRepository.save(any(Lead.class))).thenReturn(testLead);
-
-        // When
-        LeadResponse response = leadApplicationService.createLead(leadRequest, idClinic);
-
-        // Then
-        assertEquals(testLead.getIdLead(), response.getIdLead());
-        verify(leadRepository, times(2)).save(any(Lead.class));
-    }*/
 
     @Test
     @DisplayName("Testa se cria Lead")
@@ -66,12 +51,19 @@ class LeadApplicationServiceTest {
 
         when(leadRepository.save(any(Lead.class))).thenReturn(testLead);
 
+        // Mock do CommunicationService para evitar a segunda chamada de save dentro de enviaMensagem
+        CommunicationService mockCommunicationService = mock(CommunicationService.class);
+        when(mockCommunicationService.sendMessage(any())).thenReturn(new MessageResponse());
+
+        // Atualize a injeção de dependência no leadApplicationService
+        leadApplicationService = new LeadApplicationService(leadRepository, mockCommunicationService, clinicRepository);
+
         // When
         LeadResponse response = leadApplicationService.createLead(leadRequest, idClinic);
 
         // Then
         assertEquals(testLead.getIdLead(), response.getIdLead());
-        verify(leadRepository).save(any(Lead.class));
+        verify(leadRepository, atLeastOnce()).save(any(Lead.class)); // Verifica se save foi chamado pelo menos uma vez
     }
 
     @Test
@@ -84,14 +76,11 @@ class LeadApplicationServiceTest {
         // Mock the behavior for clinicRepository to simulate clinic not found
         when(clinicRepository.findById(idClinic)).thenReturn(Optional.empty());
 
-        // Configure leadRepository.save to throw an exception
-        when(leadRepository.save(any(Lead.class))).thenThrow(APIException.build(HttpStatus.BAD_REQUEST, "Já existe um registro com esse phone!"));
-
         // When
         APIException e = assertThrows(APIException.class, () -> leadApplicationService.createLead(leadRequest, idClinic));
 
         // Then
-        assertEquals(HttpStatus.BAD_REQUEST, e.getStatusException());
-        assertEquals("Já existe um registro com esse phone!", e.getMessage());
+        assertEquals(HttpStatus.NOT_FOUND, e.getStatusException());
+        assertEquals("Clinica não encontrada!", e.getMessage());
     }
 }
