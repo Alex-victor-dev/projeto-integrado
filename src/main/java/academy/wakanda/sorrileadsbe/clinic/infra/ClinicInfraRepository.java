@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -31,4 +32,13 @@ public class ClinicInfraRepository implements ClinicRepository {
         log.info("[finish] ClinicInfraRepository - buscaClinicPerId");
         return clinic;
     }
+
+    @Override
+    public Optional<Clinic> findByEmail(String email) {
+        log.info("[start] ClinicInfraRepository - findByEmail");
+        Optional<Clinic> clinic = clinicSpringDataJPARepository.findByEmail(email);
+        log.info("[finish] ClinicInfraRepository - findByEmail");
+        return clinic;
+    }
+
 }
