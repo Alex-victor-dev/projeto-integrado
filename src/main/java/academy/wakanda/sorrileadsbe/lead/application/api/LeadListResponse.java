@@ -1,7 +1,6 @@
 package academy.wakanda.sorrileadsbe.lead.application.api;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import academy.wakanda.sorrileadsbe.lead.domain.Lead;
