@@ -11,5 +11,5 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class LeadResponse {
-    private UUID idLead;
+	private UUID idLead;
 }
