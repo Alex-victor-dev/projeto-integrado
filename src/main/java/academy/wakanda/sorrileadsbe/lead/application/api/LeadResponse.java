@@ -1,15 +1,15 @@
 package academy.wakanda.sorrileadsbe.lead.application.api;
 
-import academy.wakanda.sorrileadsbe.lead.domain.Lead;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.UUID;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class LeadResponse {
-    private UUID idLead;
-
-    public LeadResponse (Lead lead){
-        this.idLead = lead.getIdLead();
-    }
+	private UUID idLead;
 }

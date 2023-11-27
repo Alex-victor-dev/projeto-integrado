@@ -9,17 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import academy.wakanda.sorrileadsbe.lead.application.api.EspecialidadeInteressada;
-import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
-import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
+import academy.wakanda.sorrileadsbe.lead.application.api.EspecialidadeInteressada;
+import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
+import academy.wakanda.sorrileadsbe.lead.application.repository.LeadRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,8 +36,8 @@ public class Lead {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idLead;
+	@Column(name = "idClinic")
 	private UUID idClinic;
-	@NotBlank
 	private String name;
 	@NotBlank
 	@Column(unique = true)
@@ -52,7 +51,8 @@ public class Lead {
 	@Column(name = "enviouMensagenDeBoasVindas")
 	private boolean enviouMensagenDeBoasVindas;
 
-	public Lead(LeadRequest leadRequest) {
+	public Lead(LeadRequest leadRequest, UUID idClinic) {
+		this.idClinic = idClinic;
 		this.name = leadRequest.getNome();
 		this.phone = leadRequest.getPhone();
 		this.email = leadRequest.getEmail();
@@ -90,4 +90,5 @@ public class Lead {
 	private static final String MENSAGEM_BOAS_VINDAS = "Olá! Seja bem-vindo à nossa Clínica 🔝\r\n"
 			+ "Estamos animadas para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
 			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
+
 }

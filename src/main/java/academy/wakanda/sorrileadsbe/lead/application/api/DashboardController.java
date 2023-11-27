@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class DashboardController implements DashboardAPI {
 
-	private LeadService leadService;
+	private final LeadService leadService;
 
 	@Override
 	public List<LeadListResponse> getLeadsByClinicUrl(UUID idClinic) {

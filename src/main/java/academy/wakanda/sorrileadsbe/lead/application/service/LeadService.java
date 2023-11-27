@@ -8,7 +8,8 @@ import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadResponse;
 
 public interface LeadService {
-    LeadResponse createLead(LeadRequest leadRequest);
 
 	List<LeadListResponse> getLeadsByClinicUrl(UUID idClinic);
+
+	LeadResponse createLead(LeadRequest leadRequest, UUID idClinic);
 }

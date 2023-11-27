@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import academy.wakanda.sorrileadsbe.clinic.application.service.ClinicRepository;
-import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadListResponse;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
@@ -23,16 +22,16 @@ public class LeadApplicationService implements LeadService {
 
 	private final LeadRepository leadRepository;
 	private final CommunicationService communicationService;
-	private ClinicRepository clinicRepository;
+	private final ClinicRepository clinicRepository;
 
 	@Override
-	public LeadResponse createLead(LeadRequest leadRequest) {
-		log.info("[start]  LeadApplicationService- createLead");
-		Lead lead = leadRepository.save(new Lead(leadRequest));
+	public LeadResponse createLead(LeadRequest leadRequest, UUID idClinic) {
+		log.info("[start] LeadApplicationService - createLead");
+		clinicRepository.buscaClinicPerId(idClinic);
+		Lead lead = leadRepository.save(new Lead(leadRequest, idClinic));
 		lead.enviaMensagem(communicationService, leadRepository);
-		log.info("[finish]  LeadApplicationService - createLead");
-		return new LeadResponse(lead);
-
+		log.info("[finish] LeadApplicationService - createLead");
+		return new LeadResponse(lead.getIdLead());
 	}
 
 	@Override
@@ -44,4 +43,5 @@ public class LeadApplicationService implements LeadService {
 		log.info("[finish]  LeadApplicationService- getLeadsByClinicUrl");
 		return LeadListResponse.converte(leadsList);
 	}
+
 }
