@@ -1,5 +1,17 @@
 package academy.wakanda.sorrileadsbe.lead.domain;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
@@ -13,13 +25,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.Optional;
-import java.util.UUID;
-
 @Log4j2
 @Getter
 @Entity
@@ -31,9 +36,8 @@ public class Lead {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idLead;
-	@Column(name= "idClinic")
+	@Column(name = "idClinic")
 	private UUID idClinic;
-	@NotBlank
 	private String name;
 	@NotBlank
 	@Column(unique = true)
@@ -47,10 +51,9 @@ public class Lead {
 	@Column(name = "enviouMensagenDeBoasVindas")
 	private boolean enviouMensagenDeBoasVindas;
 
-
 	public Lead(LeadRequest leadRequest, UUID idClinic) {
 		this.idClinic = idClinic;
-		this.name =leadRequest.getNome();
+		this.name = leadRequest.getNome();
 		this.phone = leadRequest.getPhone();
 		this.email = leadRequest.getEmail();
 		this.especialidadeInteressada = EspecialidadeInteressada.fromString(leadRequest.getEspecialidadeInteressada());
@@ -58,16 +61,14 @@ public class Lead {
 		this.registrationDate = leadRequest.getRegistrationDate();
 	}
 
-
-
-
 	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository) {
 		try {
 			log.info("[Inicia] - Lead - enviaMensagem");
-			MessageResponse response = communicationService.sendMessage(new MessageRequest(this.phone, MENSAGEM_BOAS_VINDAS));
+			MessageResponse response = communicationService
+					.sendMessage(new MessageRequest(this.phone, MENSAGEM_BOAS_VINDAS));
 			verificaSeEnviouMensagem(response);
 		} catch (Exception e) {
-			log.error("[ERROR] - Lead - enviaMensagem",e);
+			log.error("[ERROR] - Lead - enviaMensagem", e);
 			this.enviouMensagenDeBoasVindas = false;
 		}
 		leadRepository.save(this);
@@ -91,4 +92,3 @@ public class Lead {
 			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
 
 }
-
