@@ -11,4 +11,5 @@ public class ClinicUpdateRequest {
     private String email;
     private String keyZapi;
     private String tokenZapi;
+    private String fraseBoasVindas;
 }

@@ -1,6 +1,8 @@
 package academy.wakanda.sorrileadsbe.lead.domain;
 
 
+import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
+import academy.wakanda.sorrileadsbe.clinic.infra.ClinicInfraRepository;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
@@ -58,16 +60,31 @@ public class Lead {
 		this.registrationDate = leadRequest.getRegistrationDate();
 	}
 
-
-
-
-	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository) {
+	public void enviaMensagem(CommunicationService communicationService, LeadRepository leadRepository, ClinicInfraRepository clinicInfraRepository) {
 		try {
 			log.info("[Inicia] - Lead - enviaMensagem");
-			MessageResponse response = communicationService.sendMessage(new MessageRequest(this.phone, MENSAGEM_BOAS_VINDAS));
+			log.info("ID da Clínica do Lead: {}", this.idClinic);
+
+			Clinic clinic = clinicInfraRepository.buscaClinicPerId(this.idClinic);
+			log.info("Clínica encontrada: {}", clinic);
+
+			if (clinic == null) {
+				log.error("Não foi encontrada uma clínica com o ID fornecido: {}", this.idClinic);
+				throw new IllegalStateException("Clínica não encontrada para o ID: " + this.idClinic);
+			}
+
+			if (clinic.getFraseBoasVindas() == null) {
+				log.error("A clínica encontrada não possui frase de boas-vindas. Clínica: {}", clinic);
+				throw new IllegalStateException("Frase de boas-vindas não encontrada para a clínica: " + clinic);
+			}
+
+			String mensagemPersonalizada = clinic.getFraseBoasVindas() + "\n" + MENSAGEM_PADRAO_PERSONALIZADA;
+			log.info("Enviando mensagem para o Lead: Nome: {}, ID da Clínica: {}, Mensagem: {}", this.name, this.idClinic, mensagemPersonalizada);
+
+			MessageResponse response = communicationService.sendMessage(new MessageRequest(this.phone, mensagemPersonalizada));
 			verificaSeEnviouMensagem(response);
 		} catch (Exception e) {
-			log.error("[ERROR] - Lead - enviaMensagem",e);
+			log.error("[ERROR] - Lead - enviaMensagem", e);
 			this.enviouMensagenDeBoasVindas = false;
 		}
 		leadRepository.save(this);
@@ -86,8 +103,10 @@ public class Lead {
 		return Optional.ofNullable(response).map(MessageResponse::enviouMensagem).orElse(false);
 	}
 
-	private static final String MENSAGEM_BOAS_VINDAS = "Olá! Seja bem-vindo à nossa Clínica 🔝\r\n"
-			+ "Estamos animadas para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
+	private static final String MENSAGEM_PADRAO_PERSONALIZADA = "{nome},vimos que você se interessou " +
+			"por {nome do tratamento}.🔝\r\n"
+			+ "E que também adicionou esse comentário: {descrição personalizada}<optional>\r\n"
+			+ "Estamos animados para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
 			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
 
 }

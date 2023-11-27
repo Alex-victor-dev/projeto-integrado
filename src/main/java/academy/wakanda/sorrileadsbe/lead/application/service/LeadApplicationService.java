@@ -1,6 +1,6 @@
 package academy.wakanda.sorrileadsbe.lead.application.service;
 
-import academy.wakanda.sorrileadsbe.clinic.application.service.ClinicRepository;
+import academy.wakanda.sorrileadsbe.clinic.infra.ClinicInfraRepository;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadRequest;
 import academy.wakanda.sorrileadsbe.lead.application.api.LeadResponse;
@@ -19,14 +19,15 @@ public class LeadApplicationService implements LeadService {
 
 	private final LeadRepository leadRepository;
 	private final CommunicationService communicationService;
-	private final ClinicRepository clinicRepository;
+	private final ClinicInfraRepository clinicInfraRepository;
+
 
 	@Override
 	public LeadResponse createLead(LeadRequest leadRequest, UUID idClinic) {
 		log.info("[start] LeadApplicationService - createLead");
-		clinicRepository.buscaClinicPerId(idClinic);
+		clinicInfraRepository.buscaClinicPerId(idClinic);
 		Lead lead = leadRepository.save(new Lead(leadRequest, idClinic));
-		lead.enviaMensagem(communicationService, leadRepository);
+		lead.enviaMensagem(communicationService, leadRepository, clinicInfraRepository);
 		log.info("[finish] LeadApplicationService - createLead");
 		return new LeadResponse(lead.getIdLead());
 	}

@@ -1,7 +1,7 @@
 package academy.wakanda.sorrileadsbe.application.service;
 
-import academy.wakanda.sorrileadsbe.clinic.application.service.ClinicRepository;
 import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
+import academy.wakanda.sorrileadsbe.clinic.infra.ClinicInfraRepository;
 import academy.wakanda.sorrileadsbe.communication.application.service.CommunicationService;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
 import academy.wakanda.sorrileadsbe.handler.APIException;
@@ -34,15 +34,15 @@ class LeadApplicationServiceTest {
     @Mock
     private LeadRepository leadRepository;
     @Mock
-    private ClinicRepository clinicRepository;
+    private ClinicInfraRepository clinicInfraRepository;
 
     @Test
     @DisplayName("Testa se cria Lead")
     void createRespondentTest() {
         // Given
         UUID idClinic = UUID.randomUUID();
-        Clinic clinic = DataHelper.createTestClinic(); // Não precisa mais do setIdClinic
-        when(clinicRepository.buscaClinicPerId(idClinic)).thenReturn(clinic);
+        Clinic clinic = DataHelper.createTestClinic();
+        when(clinicInfraRepository.buscaClinicPerId(idClinic)).thenReturn(clinic);
 
         LeadRequest leadRequest = DataHelper.createSimpleJsonLead();
         Lead testLead = new Lead(leadRequest, idClinic);
@@ -53,7 +53,7 @@ class LeadApplicationServiceTest {
         when(mockCommunicationService.sendMessage(any())).thenReturn(new MessageResponse());
 
         // Atualize a injeção de dependência no leadApplicationService
-        leadApplicationService = new LeadApplicationService(leadRepository, mockCommunicationService, clinicRepository);
+        leadApplicationService = new LeadApplicationService(leadRepository, mockCommunicationService, clinicInfraRepository);
 
         // When
         LeadResponse response = leadApplicationService.createLead(leadRequest, idClinic);
@@ -71,7 +71,7 @@ class LeadApplicationServiceTest {
         LeadRequest leadRequest = DataHelper.createSimpleJsonLead();
 
         // Mock the behavior for clinicRepository to throw an exception when clinic is not found
-        when(clinicRepository.buscaClinicPerId(idClinic))
+        when(clinicInfraRepository.buscaClinicPerId(idClinic))
                 .thenThrow(APIException.build(HttpStatus.NOT_FOUND, "Clínica não encontrada!"));
 
         // When & Then

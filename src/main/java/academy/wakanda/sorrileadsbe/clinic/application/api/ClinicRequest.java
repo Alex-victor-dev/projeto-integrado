@@ -20,5 +20,7 @@ public class ClinicRequest {
     private String keyZapi;
     @NotBlank
     private String tokenZapi;
+    @NotBlank
+    private String fraseBoasVindas;
 
 }
