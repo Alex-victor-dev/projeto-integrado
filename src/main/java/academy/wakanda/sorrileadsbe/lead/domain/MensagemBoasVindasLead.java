@@ -15,8 +15,16 @@ public class MensagemBoasVindasLead {
 	}
 
 	public MessageRequest getMessage() {
-		String mensagemPersonalizada = clinic.obtemMensagemBoasVindas();
-		return new MessageRequest(lead.getPhone(), mensagemPersonalizada);
+		String mensagemPadrao = clinic.obtemMensagemBoasVindas();
+		String  mensagemPersonalizada = constructorPersonalizedMessage(mensagemPadrao);
+		return new MessageRequest(lead.getPhone(),  mensagemPersonalizada);
 	}
 
+	private String constructorPersonalizedMessage(String mensagemPadrao) {
+		String mensagemPersonalizada = mensagemPadrao
+				.replace("{nome}", lead.getName())
+				.replace("{nome do tratamento}", lead.getEspecialidadeInteressada().toString())
+				.replace("{descrição personalizada}", lead.getPerguntaEspecificaLead());
+		return  mensagemPersonalizada;
+	}
 }
