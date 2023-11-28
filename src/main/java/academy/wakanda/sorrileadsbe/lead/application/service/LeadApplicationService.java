@@ -38,6 +38,7 @@ public class LeadApplicationService implements LeadService {
 	public List<LeadListResponse> getLeadsByClinicUrl(UUID idClinic) {
 		log.info("[start]  LeadApplicationService- getLeadsByClinicUrl");
 		log.info("[idClinic] {}", idClinic);
+		clinicInfraRepository.buscaClinicPerId(idClinic);
 		List<Lead> leadsList = leadRepository.getLeadsByClinicUrl(idClinic);
 		log.info("[finish]  LeadApplicationService- getLeadsByClinicUrl");
 		return LeadListResponse.converte(leadsList);
