@@ -40,6 +40,8 @@ public class Clinic {
     @NotBlank
     private String tokenZapi;
     private LocalDateTime dataCadastro;
+    @NotBlank
+    private String fraseBoasVindas;
 
 
     public Clinic(ClinicRequest clinicRequest) {
@@ -48,7 +50,9 @@ public class Clinic {
         this.email = clinicRequest.getEmail();
         this.keyZapi = clinicRequest.getKeyZapi();
         this.tokenZapi = clinicRequest.getTokenZapi();
+        this.fraseBoasVindas = clinicRequest.getFraseBoasVindas();
         this.dataCadastro = LocalDateTime.now();
+
     }
 
     public void update(ClinicUpdateRequest clinicUpdateRequest) {
@@ -57,6 +61,7 @@ public class Clinic {
         this.email = clinicUpdateRequest.getEmail();
         this.keyZapi = clinicUpdateRequest.getKeyZapi();
         this.tokenZapi = clinicUpdateRequest.getTokenZapi();
+        this.fraseBoasVindas = clinicUpdateRequest.getFraseBoasVindas();
     }
 
     public static void validateEmail(String email, ClinicRepository clinicRepository) {

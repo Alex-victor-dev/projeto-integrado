@@ -9,4 +9,5 @@ public interface LeadRepository {
 	Lead save(Lead lead);
 
 	List<Lead> getLeadsByClinicUrl(UUID idClinic);
+
 }
