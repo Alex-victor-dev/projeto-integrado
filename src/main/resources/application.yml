@@ -7,9 +7,9 @@ spring:
     name: sorrileads
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://sorrileads2.cuzcrbj17ugj.us-east-1.rds.amazonaws.com:5432/postgres?currentSchema=sorrileads}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres?currentSchema=sorrileads}
     username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
+    password: ${POSTGRES_PASSWORD:novaform1}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
