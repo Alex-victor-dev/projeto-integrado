@@ -21,7 +21,7 @@ public class CommunicationInfraIntegrator implements CommunicationIntegrator {
 	public MessageResponse sendMessage(MessageRequest messageRequest, Clinic clinic) {
 		log.info("[inicia] CommunicationInfraIntegrator - sendMessage");
 		try {
-			MessageResponse messageResponse = zapiClientIntegrator.sendMessage(messageRequest, clinic.getKeyZapi(), clinic.getTokenZapi());
+			MessageResponse messageResponse = zapiClientIntegrator.sendMessage(messageRequest, clinic.getKeyZapi(), clinic.getTokenZapi(), clinic.getClientToken());
 			log.info("[messageResponse] {}", messageResponse);
 			return messageResponse;
 

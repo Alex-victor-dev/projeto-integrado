@@ -34,7 +34,7 @@ public class CommunicationInfraIntegratorTest {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 		MessageResponse expectedResponse = new MessageResponse("456", "123", "789");
 
-		when(zapiClientIntegrator.sendMessage(messageRequest, null, null)).thenReturn(expectedResponse);
+		when(zapiClientIntegrator.sendMessage(messageRequest, null, null, null)).thenReturn(expectedResponse);
 
 		MessageResponse actualResponse = communicationInfraIntegrator.sendMessage(messageRequest, null);
 
@@ -46,7 +46,7 @@ public class CommunicationInfraIntegratorTest {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 		FeignException feignException = mock(FeignException.class);
 
-		when(zapiClientIntegrator.sendMessage(messageRequest, null, null)).thenThrow(feignException);
+		when(zapiClientIntegrator.sendMessage(messageRequest, null, null, null)).thenThrow(feignException);
 		when(feignException.status()).thenReturn(HttpStatus.BAD_REQUEST.value());
 		when(feignException.contentUTF8()).thenReturn("Error response message");
 
@@ -61,7 +61,7 @@ public class CommunicationInfraIntegratorTest {
 
 	    APIException customException = APIException.build(expectedStatus, expectedErrorMessage);
 
-	    when(zapiClientIntegrator.sendMessage(messageRequest, expectedErrorMessage, expectedErrorMessage)).thenThrow(customException);
+	    when(zapiClientIntegrator.sendMessage(messageRequest, expectedErrorMessage, expectedErrorMessage, expectedErrorMessage)).thenThrow(customException);
 
 	    APIException apiException = assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, null));
 
