@@ -34,9 +34,9 @@ public class CommunicationInfraIntegratorTest {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 		MessageResponse expectedResponse = new MessageResponse("456", "123", "789");
 
-		when(zapiClientIntegrator.sendMessage(messageRequest)).thenReturn(expectedResponse);
+		when(zapiClientIntegrator.sendMessage(messageRequest, null, null)).thenReturn(expectedResponse);
 
-		MessageResponse actualResponse = communicationInfraIntegrator.sendMessage(messageRequest);
+		MessageResponse actualResponse = communicationInfraIntegrator.sendMessage(messageRequest, null);
 
 		assertEquals(expectedResponse, actualResponse);
 	}
@@ -46,11 +46,11 @@ public class CommunicationInfraIntegratorTest {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 		FeignException feignException = mock(FeignException.class);
 
-		when(zapiClientIntegrator.sendMessage(messageRequest)).thenThrow(feignException);
+		when(zapiClientIntegrator.sendMessage(messageRequest, null, null)).thenThrow(feignException);
 		when(feignException.status()).thenReturn(HttpStatus.BAD_REQUEST.value());
 		when(feignException.contentUTF8()).thenReturn("Error response message");
 
-		assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest));
+		assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, null));
 	}
 
 	@Test
@@ -61,9 +61,9 @@ public class CommunicationInfraIntegratorTest {
 
 	    APIException customException = APIException.build(expectedStatus, expectedErrorMessage);
 
-	    when(zapiClientIntegrator.sendMessage(messageRequest)).thenThrow(customException);
+	    when(zapiClientIntegrator.sendMessage(messageRequest, expectedErrorMessage, expectedErrorMessage)).thenThrow(customException);
 
-	    APIException apiException = assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest));
+	    APIException apiException = assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, null));
 
 	    // Verifique se a exceção lançada tem o mesmo status e mensagem de erro esperados
 	    assertEquals(expectedStatus, apiException.getStatusException());

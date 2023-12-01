@@ -31,8 +31,8 @@ class CommunicationApplicationServiceTest {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "ola");
 		MessageResponse expectedResponse = new MessageResponse("123", "456", "789");
 
-		when(messageSendIntegrator.sendMessage(messageRequest)).thenReturn(expectedResponse);
-		MessageResponse actualResponse = communicationService.sendMessage(messageRequest);
+		when(messageSendIntegrator.sendMessage(messageRequest, null)).thenReturn(expectedResponse);
+		MessageResponse actualResponse = communicationService.sendMessage(messageRequest, null);
 
 		assertEquals("123", actualResponse.getZaapId());
 		assertEquals("456", actualResponse.getMessageId());
@@ -44,8 +44,8 @@ class CommunicationApplicationServiceTest {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "ola");
 		MessageResponse expectedResponse = new MessageResponse("1234", "456", "789"); // Set different values
 
-		when(messageSendIntegrator.sendMessage(messageRequest)).thenReturn(expectedResponse);
-		MessageResponse actualResponse = communicationService.sendMessage(messageRequest);
+		when(messageSendIntegrator.sendMessage(messageRequest, null)).thenReturn(expectedResponse);
+		MessageResponse actualResponse = communicationService.sendMessage(messageRequest, null);
 
 		// Modify the assertions to compare with different values
 		assertNotEquals("999", actualResponse.getZaapId());

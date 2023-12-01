@@ -25,6 +25,7 @@ public class MensagemBoasVindasLead {
 				.replace("{nome}", lead.getName())
 				.replace("{nome do tratamento}", lead.getEspecialidadeInteressada().toString())
 				.replace("{descrição personalizada}", lead.getPerguntaEspecificaLead());
+		System.out.println(mensagemPersonalizada);
 		return  mensagemPersonalizada;
 	}
 }

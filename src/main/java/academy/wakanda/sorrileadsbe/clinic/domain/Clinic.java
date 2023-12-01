@@ -82,7 +82,7 @@ public class Clinic {
 
 	public String obtemMensagemBoasVindas() {
 		if (this.getFraseBoasVindas() != null) {
-			return this.getFraseBoasVindas() + "\n" + MENSAGEM_PADRAO_PERSONALIZADA;
+			return "\n" + this.getFraseBoasVindas() + "\n" + MENSAGEM_PADRAO_PERSONALIZADA;
 		} else {
 			return MENSAGEM_PADRAO_PERSONALIZADA;
 		}
