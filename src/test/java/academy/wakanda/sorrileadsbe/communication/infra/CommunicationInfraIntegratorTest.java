@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
+import academy.wakanda.sorrileadsbe.application.service.DataHelper;
+import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.handler.APIException;
 import feign.FeignException;
@@ -33,10 +35,11 @@ public class CommunicationInfraIntegratorTest {
 	void testSendMessage_Success() {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 		MessageResponse expectedResponse = new MessageResponse("456", "123", "789");
+		Clinic clinic = DataHelper.createTestClinic();
 
-		when(zapiClientIntegrator.sendMessage(messageRequest, null, null, null)).thenReturn(expectedResponse);
+		when(zapiClientIntegrator.sendMessage(messageRequest, clinic.getKeyZapi(), clinic.getTokenZapi(), clinic.getClientToken())).thenReturn(expectedResponse);
 
-		MessageResponse actualResponse = communicationInfraIntegrator.sendMessage(messageRequest, null);
+		MessageResponse actualResponse = communicationInfraIntegrator.sendMessage(messageRequest, clinic);
 
 		assertEquals(expectedResponse, actualResponse);
 	}
@@ -45,12 +48,13 @@ public class CommunicationInfraIntegratorTest {
 	void testSendMessage_FeignException() {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 		FeignException feignException = mock(FeignException.class);
+		Clinic clinic = DataHelper.createTestClinic();
 
-		when(zapiClientIntegrator.sendMessage(messageRequest, null, null, null)).thenThrow(feignException);
+		when(zapiClientIntegrator.sendMessage(messageRequest, clinic.getKeyZapi(), clinic.getTokenZapi(), clinic.getClientToken())).thenThrow(feignException);
 		when(feignException.status()).thenReturn(HttpStatus.BAD_REQUEST.value());
 		when(feignException.contentUTF8()).thenReturn("Error response message");
 
-		assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, null));
+		assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, clinic));
 	}
 
 	@Test
@@ -58,12 +62,13 @@ public class CommunicationInfraIntegratorTest {
 	    MessageRequest messageRequest = new MessageRequest("73982580811", "Ola");
 	    HttpStatus expectedStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 	    String expectedErrorMessage = "Ocorreu uma exceção Não Tratada";
+	    Clinic clinic = DataHelper.createTestClinic();
 
 	    APIException customException = APIException.build(expectedStatus, expectedErrorMessage);
 
 	    when(zapiClientIntegrator.sendMessage(messageRequest, expectedErrorMessage, expectedErrorMessage, expectedErrorMessage)).thenThrow(customException);
 
-	    APIException apiException = assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, null));
+	    APIException apiException = assertThrows(APIException.class, () -> communicationInfraIntegrator.sendMessage(messageRequest, clinic));
 
 	    // Verifique se a exceção lançada tem o mesmo status e mensagem de erro esperados
 	    assertEquals(expectedStatus, apiException.getStatusException());
