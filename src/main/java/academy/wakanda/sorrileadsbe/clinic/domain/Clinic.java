@@ -92,10 +92,10 @@ public class Clinic {
 		}
 	}
 
-	private static final String MENSAGEM_PADRAO_PERSONALIZADA = "{nome},vimos que você se interessou "
+	private static final String MENSAGEM_PADRAO_PERSONALIZADA = "{nome}, vimos que você se interessou "
 			+ "por {nome do tratamento}.🔝\r\n"
-			+ "E que também adicionou esse comentário: {descrição personalizada}<optional>\r\n"
-			+ "Estamos animados para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
-			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
+			+ "E que também adicionou esse comentário: {descrição personalizada} 📝\r\n"
+			+ "Estamos animados para te ajudar nesta jornada por um Sorriso mais bonito e saudável.🤗\r\n"
+			+ "Em breve uma das nossas secretárias continuará seu atendimento! 👩🏽‍💼";
 
 }

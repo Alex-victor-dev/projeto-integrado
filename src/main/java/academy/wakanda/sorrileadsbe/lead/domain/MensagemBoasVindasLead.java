@@ -11,21 +11,30 @@ public class MensagemBoasVindasLead {
 	public MensagemBoasVindasLead(Clinic clinic, Lead lead) {
 		this.clinic = clinic;
 		this.lead = lead;
-
 	}
 
 	public MessageRequest getMessage() {
 		String mensagemPadrao = clinic.obtemMensagemBoasVindas();
-		String  mensagemPersonalizada = constructorPersonalizedMessage(mensagemPadrao);
-		return new MessageRequest(lead.getPhone(),  mensagemPersonalizada);
+		String mensagemPersonalizada = constructorPersonalizedMessage(mensagemPadrao);
+		return new MessageRequest(lead.getPhone(), mensagemPersonalizada);
 	}
 
-	private String constructorPersonalizedMessage(String mensagemPadrao) {
+	public String constructorPersonalizedMessage(String mensagemPadrao) {
+		String descricaoPersonalizada = lead.getPerguntaEspecificaLead();
+		mensagemPadrao = verificaDescrição(descricaoPersonalizada, mensagemPadrao);
 		String mensagemPersonalizada = mensagemPadrao
-				.replace("{nome}", lead.getName())
-				.replace("{nome do tratamento}", lead.getEspecialidadeInteressada().toString())
-				.replace("{descrição personalizada}", lead.getPerguntaEspecificaLead());
-		System.out.println(mensagemPersonalizada);
-		return  mensagemPersonalizada;
+				.replace("{nome}", "*" + lead.getName() + "*")
+				.replace("{nome do tratamento}", "*" + lead.getEspecialidadeInteressada().toString().replace("_", " ") + "*");
+		return mensagemPersonalizada;
+	}
+
+	public String verificaDescrição(String descricaoPersonalizada, String mensagemPadrao) {
+		if (descricaoPersonalizada != null && !descricaoPersonalizada.isEmpty()) {
+			mensagemPadrao = mensagemPadrao.replace("{descrição personalizada}", "*" + descricaoPersonalizada + "*");
+		} else {
+			mensagemPadrao = mensagemPadrao
+					.replace("E que também adicionou esse comentário: {descrição personalizada} 📝\r\n", "");
+		}
+		return mensagemPadrao;
 	}
 }
