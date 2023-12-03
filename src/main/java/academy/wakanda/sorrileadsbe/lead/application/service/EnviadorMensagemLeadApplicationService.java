@@ -27,7 +27,7 @@ public class EnviadorMensagemLeadApplicationService implements EnviadorMensagemL
 			Clinic clinic = clinicRepository.buscaClinicPerId(lead.getIdClinic());
 			MensagemBoasVindasLead mensagemBoasVindasLead = new MensagemBoasVindasLead(clinic, lead);
 			MessageResponse response = communicationService
-					.sendMessage(mensagemBoasVindasLead.getMessage());
+					.sendMessage(mensagemBoasVindasLead.getMessage(), clinic);
 			lead.verificaSeEnviouMensagem(response);
 		} catch (Exception e) {
 			log.error("[ERROR] - Lead - enviaMensagem", e);

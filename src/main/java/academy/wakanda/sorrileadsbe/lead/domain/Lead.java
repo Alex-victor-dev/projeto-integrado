@@ -35,7 +35,6 @@ public class Lead {
 	private UUID idClinic;
 	private String name;
 	@NotBlank
-	@Column(unique = true)
 	private String phone;
 	@Email
 	private String email;

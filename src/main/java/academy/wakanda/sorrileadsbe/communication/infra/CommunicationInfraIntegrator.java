@@ -3,6 +3,7 @@ package academy.wakanda.sorrileadsbe.communication.infra;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.handler.APIException;
 import feign.FeignException;
@@ -17,10 +18,10 @@ public class CommunicationInfraIntegrator implements CommunicationIntegrator {
 	private final CommunicationZapiClientIntegrator zapiClientIntegrator;
 
 	@Override
-	public MessageResponse sendMessage(MessageRequest messageRequest) {
+	public MessageResponse sendMessage(MessageRequest messageRequest, Clinic clinic) {
 		log.info("[inicia] CommunicationInfraIntegrator - sendMessage");
 		try {
-			MessageResponse messageResponse = zapiClientIntegrator.sendMessage(messageRequest);
+			MessageResponse messageResponse = zapiClientIntegrator.sendMessage(messageRequest, clinic.getKeyZapi(), clinic.getTokenZapi(), clinic.getClientToken());
 			log.info("[messageResponse] {}", messageResponse);
 			return messageResponse;
 

@@ -12,4 +12,5 @@ public class ClinicUpdateRequest {
     private String keyZapi;
     private String tokenZapi;
     private String fraseBoasVindas;
+	private String clientToken;
 }

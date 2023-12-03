@@ -48,6 +48,8 @@ public class Clinic {
 	private LocalDateTime dataCadastro;
 	@NotBlank
 	private String fraseBoasVindas;
+	@NotBlank
+	private String clientToken;
 
 	public Clinic(ClinicRequest clinicRequest) {
 		this.nameClinic = clinicRequest.getNameClinic();
@@ -55,6 +57,7 @@ public class Clinic {
 		this.email = clinicRequest.getEmail();
 		this.keyZapi = clinicRequest.getKeyZapi();
 		this.tokenZapi = clinicRequest.getTokenZapi();
+		this.clientToken = clinicRequest.getClientToken();
 		this.fraseBoasVindas = clinicRequest.getFraseBoasVindas();
 		this.dataCadastro = LocalDateTime.now();
 
@@ -66,6 +69,7 @@ public class Clinic {
 		this.email = clinicUpdateRequest.getEmail();
 		this.keyZapi = clinicUpdateRequest.getKeyZapi();
 		this.tokenZapi = clinicUpdateRequest.getTokenZapi();
+		this.clientToken = clinicUpdateRequest.getClientToken();
 		this.fraseBoasVindas = clinicUpdateRequest.getFraseBoasVindas();
 	}
 
@@ -82,16 +86,16 @@ public class Clinic {
 
 	public String obtemMensagemBoasVindas() {
 		if (this.getFraseBoasVindas() != null) {
-			return this.getFraseBoasVindas() + "\n" + MENSAGEM_PADRAO_PERSONALIZADA;
+			return "\n" + this.getFraseBoasVindas() + "\n" + MENSAGEM_PADRAO_PERSONALIZADA;
 		} else {
 			return MENSAGEM_PADRAO_PERSONALIZADA;
 		}
 	}
 
-	private static final String MENSAGEM_PADRAO_PERSONALIZADA = "{nome},vimos que você se interessou "
+	private static final String MENSAGEM_PADRAO_PERSONALIZADA = "{nome}, vimos que você se interessou "
 			+ "por {nome do tratamento}.🔝\r\n"
-			+ "E que também adicionou esse comentário: {descrição personalizada}<optional>\r\n"
-			+ "Estamos animados para te ajudar nesta jornada por um Sorriso mais bonito e saudável 🤗\r\n"
-			+ "Em breve uma das nossas secretárias vai continuar seu atendimento! 👩🏽‍💼";
+			+ "E que também adicionou esse comentário: {descrição personalizada} 📝\r\n"
+			+ "Estamos animados para te ajudar nesta jornada por um Sorriso mais bonito e saudável.🤗\r\n"
+			+ "Em breve uma das nossas secretárias continuará seu atendimento! 👩🏽‍💼";
 
 }

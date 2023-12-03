@@ -23,7 +23,7 @@ public class DataHelper {
     public static Clinic createTestClinic() {
         // Crie um ClinicRequest com dados de teste
         ClinicRequest clinicRequest = new ClinicRequest("Teste","123456789",
-                "test@example.com", "keyapi", "token", "Bem-vindo!");
+                "test@example.com", "keyapi", "token", "Bem-vindo!", null);
 
         // Use o ClinicRequest para criar uma nova clínica
         return new Clinic(clinicRequest);

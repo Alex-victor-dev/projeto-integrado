@@ -21,6 +21,8 @@ public class ClinicRequest {
     @NotBlank
     private String tokenZapi;
     @NotBlank
+	private String clientToken;
+    @NotBlank
     private String fraseBoasVindas;
 
 }

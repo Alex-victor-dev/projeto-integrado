@@ -7,7 +7,7 @@ spring:
     name: sorrileads
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres?currentSchema=sorrileads}
+    url: ${POSTGRES_URL:jdbc:postgresql://sorrileads2.cuzcrbj17ugj.us-east-1.rds.amazonaws.com:5432/postgres?currentSchema=sorrileads}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:novaform1}
   jpa:
@@ -27,8 +27,7 @@ springdoc:
 sorrileads:
   zapi:
     server: ${ZAPI_URL_SERVER:https://api.z-api.io}
-    id-instancia: ${ZAPI_ID_INSTANCIA:3C44F0CF676920671ABEB2E461726623}
-    token: ${ZAPI_TOKEN:48BED091BCC9423A587A947B}
+   
 
 
 logging:

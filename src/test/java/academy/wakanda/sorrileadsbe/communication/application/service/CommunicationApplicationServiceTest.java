@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import academy.wakanda.sorrileadsbe.application.service.DataHelper;
+import academy.wakanda.sorrileadsbe.clinic.domain.Clinic;
 import academy.wakanda.sorrileadsbe.communication.application.api.MessageRequest;
 import academy.wakanda.sorrileadsbe.communication.infra.CommunicationIntegrator;
 import academy.wakanda.sorrileadsbe.communication.infra.MessageResponse;
@@ -30,9 +32,10 @@ class CommunicationApplicationServiceTest {
 	public void testSendMessage() {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "ola");
 		MessageResponse expectedResponse = new MessageResponse("123", "456", "789");
+		Clinic clinic = DataHelper.createTestClinic();
 
-		when(messageSendIntegrator.sendMessage(messageRequest)).thenReturn(expectedResponse);
-		MessageResponse actualResponse = communicationService.sendMessage(messageRequest);
+		when(messageSendIntegrator.sendMessage(messageRequest, clinic)).thenReturn(expectedResponse);
+		MessageResponse actualResponse = communicationService.sendMessage(messageRequest, clinic);
 
 		assertEquals("123", actualResponse.getZaapId());
 		assertEquals("456", actualResponse.getMessageId());
@@ -43,9 +46,10 @@ class CommunicationApplicationServiceTest {
 	public void testSendMessageFail() {
 		MessageRequest messageRequest = new MessageRequest("73982580811", "ola");
 		MessageResponse expectedResponse = new MessageResponse("1234", "456", "789"); // Set different values
-
-		when(messageSendIntegrator.sendMessage(messageRequest)).thenReturn(expectedResponse);
-		MessageResponse actualResponse = communicationService.sendMessage(messageRequest);
+		Clinic clinic = DataHelper.createTestClinic();
+		
+		when(messageSendIntegrator.sendMessage(messageRequest, clinic)).thenReturn(expectedResponse);
+		MessageResponse actualResponse = communicationService.sendMessage(messageRequest, clinic);
 
 		// Modify the assertions to compare with different values
 		assertNotEquals("999", actualResponse.getZaapId());
